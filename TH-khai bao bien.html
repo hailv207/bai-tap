@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Khai báo và sử dụng biến</title>
+</head>
+<body>
+<!--button de chay script kiem tra boi so-->
+<div>
+    <button type="button" onclick="boiso();">Click de kiem tra boi so</button>
+</div>
+<script>
+    //khai bao bien
+    let i = 10
+    let f = 20.5
+    let b = true
+    let s = 'Ha Noi'
+    document.write('i = ' + i)
+    document.write('<br>')
+    document.write('f = ' + f)
+    document.write('<br>')
+    document.write('b = ' + b)
+    document.write('<br>')
+    document.write('s= ' + s)
+    document.write('<br>')
+
+    //dien tich hinh chu nhat
+    let width = 20
+    let height = 10
+    let area = width * height
+    document.write('Dien tich hinh chu nhat la: ' + area)
+
+    //kiem tra boi so
+    function boiso() {
+        a = prompt("Nhap so a");
+        b = prompt("Nhap so b");
+        if (a % b == 0) {
+            alert('So a la boi so cua so b.')
+        } else {
+            alert('So a khong phai la boi so cua so b')
+        }
+    }
+
+</script>
+</body>
+</html>

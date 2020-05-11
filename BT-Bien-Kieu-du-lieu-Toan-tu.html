@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Biến, kiểu dữ liệu và toán tử</title>
+</head>
+<body>
+<div>
+    <button type="button" onclick="diemTB();">Click de tinh diem trung binh cac mon hoc</button>
+</div>
+<div>
+    <button type="button" onclick="chuyendoF();">Click de chuyen do C sang do F</button>
+</div>
+<div>
+    <button type="button" onclick="dientichHinhtron();">Click de tinh dien tich hinh tron</button>
+</div>
+<div>
+    <button type="button" onclick="chuviHinhtron();">Click de tinh chu vi hinh tron</button>
+</div>
+<script>
+    //Diem trung binh va tong diem cac mon hoc
+    function diemTB() {
+        let diemLy = parseInt(prompt("Nhap diem mon Vat ly", 0));
+        let diemHoa = parseInt(prompt("Nhap diem mon Hoa hoc", 0));
+        let diemSinh = parseInt(prompt("Nhap diem mon Sinh hoc", 0));
+        let tong = diemLy + diemSinh + diemHoa;
+        let tb = tong / 3;
+        alert('Diem trung binh cac mon hoc la: ' + tb)
+        alert('Tong diem cac mon hoc la: ' + tong)
+    }
+
+    //Chuyen do C sang do F
+    function chuyendoF() {
+        let doC = parseInt(prompt('Ban hay nhap do C'));
+        let doF = doC * 9 / 5 - 32
+        alert(doC + ' do C bang ' + doF + ' do F.')
+    }
+
+    //Tinh dien tich hinh tron
+    function dientichHinhtron() {
+        let r = parseInt(prompt('Nhap ban kinh hinh tron'));
+        let sHinhtron = r * r * 3.14
+        alert('Dien tich hinh tron la: ' + sHinhtron)
+    }
+
+    //Tinh chu vi hinh tron
+function chuviHinhtron() {
+let r=parseInt(prompt('Nhap ban kinh hinh tron'));
+let pHinhtron=r*2*3.14
+    alert('Chu vi hinh tron la: ' +pHinhtron)
+}
+</script>
+</body>
+</html>

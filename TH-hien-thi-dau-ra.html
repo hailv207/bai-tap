@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Hiển thị đầu ra</title>
+</head>
+<body>
+<div>
+    <button type="button" onclick="showMassage();">Click me alert</button>
+</div>
+<div id="showMassage"></div>
+<div>
+    <button type="button" onclick="showMassage2();">Click me html</button>
+</div>
+<div>
+    <button type="button" onclick="showMassage3();">Click me write</button>
+</div>
+<div>
+    <button type="button" onclick="showMassage4();">Click me console log</button>
+</div>
+
+<script>
+
+    //hien thi ket qua su dung ham alert()
+    function showMassage() {
+        alert('Xin Chao')
+    }
+
+    //hien thi ket qua su dung html
+    function showMassage2() {
+        document.getElementById("showMassage").innerHTML = "Xin chao"
+    }
+
+
+    //hien thi ket qua su dung ham write()
+    function showMassage3() {
+        document.write("Xin chao")
+    }
+
+    //hien thi ket qua su dung console log
+    function showMassage4() {
+        console.log("Xin chao")
+    }
+
+</script>
+
+</body>
+</html>
