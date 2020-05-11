@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Sử dụng toán tử
+    </title>
+</head>
+<body>
+<div>
+    <button type="button" onclick="dientichChunhat();">Click de tinh dien tich hinh chu nhat.</button>
+</div>
+
+<script>
+    function dientichChunhat(){
+        let inputWidth=prompt('Nhap chieu rong hinh chu nhat');
+        let inputHeight=prompt('Nhap chieu cao hinh chu nhat');
+        let width=parseInt(inputWidth);
+        let height=parseInt(inputHeight);
+        let area=height*width
+        alert('Chu vi hinh chu nhat la: '+ area)
+    }
+
+</script>
+</body>
+</html>
