@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BAI TAP THUC HANH HTML - Le Vu Hai (C0520H1)</title>
+    <!--Tao css style cho trang web-->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .bai10-col {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+
+        /* Clear floats after the columns */
+        .bai10-row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+        h1{
+            color:blue;
+        }
+
+        .wufoo {
+            font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+        }
+        .bai6-style {
+            background-color: red;
+            color: white;
+        }
+        th,td{
+            border: 1px solid black;
+        }
+.bai11 td{
+    border: 3px solid gray;
+}
+
+    </style>
+</head>
+
+
+
+
+<!--Phan noi dung trang web-->
+<body>
+
+<ol style="list-style-type:1"><h1>Map</h1>
+    <li>
+        <a href="#bai1">[Thực hành] Sử dụng thẻ HTML cơ bản</a>
+    </li>
+    <li>
+        <a href="#bai2">[Bài tập] Tạo danh sách</a>
+    </li>
+    <li>
+        <a href="#bai3">[Bài tập] Tạo trang CV cá nhân</a>
+    </li>
+    <li>
+        <a href="#bai4">[Thực hành] Tạo form cơ bản</a>
+    </li>
+    <li>
+        <a href="#bai5">[Thực hành] Tạo một form tìm kiếm Google</a>
+    </li>
+    <li>
+        <a href="#bai6">[Bài tập] Tạo form đơn giản</a>
+
+    <li>
+        <a href="#bai7">[Bài tập] Tạo form lấy survey khách hàng</a>
+    </li>
+    <li>
+        <a href="#bai8">[Bài tập] Tạo giao diện form đăng ký người dùng</a>
+    </li>
+    <li>
+        <a href="#bai9">[Thực hành] Tạo bảng cơ bản</a>
+    </li>
+    <li>
+        <a href="#bai10">[Bài tập] Tạo bảng đơn giản (thời khoá biểu)</a>
+    </li>
+    <li>
+        <a href="#bai11">[Bài tập] Tạo bảng nâng cao (bàn cờ vua)</a>
+    </li>
+    <li>
+        <a href="#bai12">[Thực hành] Tạo bảng nâng cao (Thời khoá biểu)</a>
+    </li>
+
+</ol>
+<hr>
+
+<!--Bai tap1: Su dung the HTML co ban-->
+<h1 id="bai1">1. [Thực hành] Sử dụng thẻ HTML cơ bản</h1>
+<h1>HTML: Hyper Text Markup Language</h1>
+<p>Tim Berners-Lee invented the first browser at CERN, to enable researchers to share their research with eachother.</p>
+<a href="http://home.web.cern.ch/topics/birth-web">
+    Read more about history of HTML
+    <p>
+        <img src="https://www.kasandbox.org/programming-images/misc/tim-berners-lee-webpage.png" width="300">
+        <br> Image courtesy CERN
+    </p>
+</a>
+
+<hr>
+
+
+<!--Bai tap2: Tao danh sach-->
+<h1 id="bai2">2. [Bài tập] Tạo danh sách</h1>
+<ul>
+    <li>Viet Nam
+        <ol>
+            <li>Ha Noi</li>
+            <li>Sai Gon</li>
+            <li>Hue</li>
+            <li>Da Nang</li>
+        </ol>
+    </li>
+    <li>Hoa Ky
+        <ol>
+            <li>Newyork</li>
+            <li>Los Angeles</li>
+            <li>Chicago</li>
+            <li>Houston</li>
+        </ol>
+    </li>
+    <li>Trung Quoc
+        <ol>
+            <li>Beijing</li>
+            <li>Chongqing</li>
+            <li>Shanghai</li>
+            <li>Tianjin</li>
+        </ol>
+    </li>
+</ul>
+<hr>
+
+
+<!--Bai tap3: Tao trang CV ca nhan-->
+<h1 id="bai3">3. [Bài tập] Tạo trang CV cá nhân</h1>
+<div style="border:2px Solid green">
+    <img src="http://nobodyisnobody.weebly.com/uploads/5/3/5/8/53587273/814544_orig.jpg" alt="Can not load image." width="150" height="150">
+    <p>Ho va ten: Nguyen Van A</p>
+    <p>Dia chi: Van Quan, Ha Dong, Ha Noi.</p>
+    <p>So dien thoai: 01234567890</p>
+    <p>Email: <a href="mailto:nguyuenvana@anymail.com">nguyenvana@anymail.com</a> </p>
+</div>
+<div style="border:2px solid green">
+    <p>Hoc van: Dai hoc</p>
+    <p>Bang cap: Cu nhan chuyen nganh Quan Tri Kinh Doanh</p>
+    <p>Ky nang:
+        <ul>
+    <li> Ky nang lanh dao: 80%</li>
+    <li> Ky nang quan ly thoi gian: 90%</li>
+    <li> Ky nang phan tich, giai quyet van de: 100%</li>
+</ul>
+    </p>
+    <p>
+        Kinh nghiem:
+        <br>
+        2015-2018: Truong phong Quan he doi tac Cong ty TNHH ABC
+        <br>
+        2018-2020: Truong phong Cham soc khach hang Cong ty TNHH XYZ
+    </p>
+    <p>
+        Dinh huong phat trien Ca nhan:
+        <br>
+        Tang cuong ky nang lanh dao, quan ly nhan su, phat trien len Quan ly cap cap.
+        <br>
+        Trong vong 3 nam quan ly duoc it nhat 300 nhan su.
+    </p>
+</div>
+
+<hr>
+
+
+<!--Bai tap 4: Tao form co ban-->
+<h1 id="bai4">4. [Thực hành] Tạo form cơ bản</h1>
+<form action="index.html" method="get" class="wufoo">
+    <h2>Order form</h2>
+    <p>What would you like to buy?</p>
+    <select name="sanpham">
+        <option>A</option>
+        <option>B (+ 0.5$)</option>
+        <option>C (+ 0.5$)</option>
+    </select>
+    <p>How many would you like to order?</p>
+    <input type="radio" name="sl">1 - 10$ <br>
+    <input type="radio" name="sl">2 - 20$ <br>
+    <input type="radio" name="sl">3 - 25$ <br>
+
+    <p>Name <span style="color:#ff0000">*</span></p>
+    <input style="text" name="firstname" placeholder="FirstName" size="15" required>
+    <input style="text" name="lastname" placeholder="LastName" size="15" required>
+<p>Email</p>
+    <input type="email" name="email" size="35">
+    <p>Phone number</p>
+    <input type="text" size="5" name="phone1"> -
+    <input type="text" size="5" name="phone2"> -
+    <input type="text" size="5" name="phone3">
+    <br>
+<input type="button" name="submit" value="Submit">
+</form>
+
+<hr>
+
+
+<!--Bai tap 5: Tao form tim kiem Google-->
+<h1 id="bai5">5. [Thực hành] Tạo một form tìm kiếm Google</h1>
+<form action="https://www.bing.com/search" method="get">
+    <input type="text" name="q">
+    <input type="submit" value="Tim kiem">
+</form>
+<hr>
+
+
+<!--Bai tap 6: Tao form don gian-->
+<h1 id="bai6">6. [Bài tập] Tạo form đơn giản</h1>
+<h2 class="bai6-style">SO THICH CUA BAN</h2>
+<form action="index.html" method="get" name="register">
+    <label style="color: blue">Ho va ten</label>
+    <input type="text" name="yourname">
+    <br>
+    <label style="color: blue">Email</label>
+    <input type="text" name="email">
+    <br>
+    <label style="color: blue">So thich</label>
+
+    <input type="checkbox" multiple name="hobby">The thao
+    <input type="checkbox" multiple name="hobby">Am nhac
+    <input type="checkbox" multiple name="hobby">Doc sach
+    <br>
+    <input type="checkbox" multiple name="hobby">Luot web
+    <input type="checkbox" multiple name="hobby">Choi game
+    <input type="checkbox" multiple name="hobby">Dien anh
+    <br>
+    <input type="checkbox" multiple name="hobby">Du lich
+    <br>
+  <input type="submit" value="Gui thong tin">
+    <input type="reset" value="Nhap lai">
+</form>
+
+<form action="index.html" name="registerhv" method="get">
+    <h2 class="bai6-style">DANG KY HOC VIEN</h2>
+    <label style="color: blue">Ho va ten</label>
+    <input type="text" name="yourname">
+    <br>
+    <label style="color: blue">Ngay sinh</label>
+    <input type="date" name="ngaysinh">
+    <br>
+    <label style="color:blue">Gioi tinh</label>
+    <input type="radio" name="gioitinh">Nam
+    <input type="radio" name="gioitinh">Nu
+    <br>
+    <label style="color:blue">Dia chi</label>
+    <textarea name="diachi" rows="10" cols="30"></textarea>
+    <br>
+    <label style="color:blue">Lop</label>
+    <select name="lop" >
+        <option value="none" selected disabled hidden>
+            ---Chon lop---
+        </option>
+        <option name="lopA" value="Lop A">Lop A</option>
+        <option name="lopB" value="Lop B">Lop B</option>
+        <option name="lopC" value="Lop C">Lop C</option>
+    </select>
+    <br>
+    <label style="color:blue">Email</label>
+    <input type="email" name="email">
+    <br>
+    <label style="color:blue">Dien thoai</label>
+    <input type="text" name="dienthoai">
+    <br>
+    <input type="submit" value="Dang ky">
+    <input type="reset" value="Nhap lai">
+</form>
+<hr>
+
+<!--Bai tap 7: Tao form lay survey khach hang-->
+<h1 id="bai7">7. [Bài tập] Tạo form lấy survey khách hàng</h1>
+<form action="index.html" oninput="x.value=a.value.length">
+<h2>Market Research Survey</h2>
+
+<p>Please take a few moments to complete this satisfaction survey.</p>
+<p><b>What is yout age range?</b></p>
+<select name="age">
+    <option>18 - 24</option>
+    <option>25 - 34</option>
+    <option>35 - 50</option>
+    <option>50+</option>
+</select>
+<p><b>What is your yearly income range?</b></p>
+<select name="income">
+    <option>$0 - $25,000</option>
+    <option>$25,001 - $50,000</option>
+    <option>$50,000 - $100,000</option>
+    <option>$100,000+</option>
+</select>
+<p><b>Gender Identity</b></p>
+    <input type="radio" name="gender">Male
+    <br>
+    <input type="radio" name="gender">Female
+    <br>
+    <input type="radio" name="gender">Nonbinary
+    <br>
+    <input type="radio" name="gender" value="">Other
+    <br>
+    <input  type="text" name="gender" id="a" maxlength="250">
+    <br>
+    <label>Maximum of <b>250</b> characters.    Currently Used: </label><b><output name="x" for="a"></output></b><label> characters.</label>
+    <br>
+    <p><b>Which of the following products have your purchased in the last 2 months. Please check all that apply.</b></p>
+    <input type="checkbox" multiple>Product 1
+    <br>
+    <input type="checkbox" multiple>Product 2
+    <br>
+    <input type="checkbox" multiple>Product 3
+    <br>
+<p><b>How often would you use our new product?</b></p>
+    <input type="radio" name="often">Daily
+    <br>
+    <input type="radio" name="often">Weekly
+    <br>
+    <input type="radio" name="often">Monthly
+    <p><b>What would you pay for the new product?</b></p>
+    $<input type="number" id="dollar" min="0">.<input type="number" id="cent" min="0" max="99">
+    <br>
+    <label for="dollar">Dollars</label>
+    <label for="cent">Cents</label>
+    <p><b>What features would you like to see in the new product.</b></p>
+    <textarea name="feature" rows="10" cols="100"></textarea>
+    <br>
+    <p>Please rate your level of agreement with the following statements.</p>
+    <table width="100%" border="1px">
+        <tr class="bai7">
+            <th></th>
+            <th>Strongly Disagree</th>
+            <th>Disagree</th>
+            <th>Agree</th>
+            <th>Strongly Agree</th>
+        </tr>
+        <tr class="bai7">
+            <td><b>Our products are priced fairy</b></td>
+            <td>
+                <input type="radio" name="price">
+                <br>
+                <label>1</label>
+            </td>
+            <td>
+                <input type="radio" name="price">
+                <br>
+                <label>2</label>
+            </td>
+            <td>
+                <input type="radio" name="price">
+                <br>
+                <label>3</label>
+            </td>
+            <td>
+                <input type="radio" name="price">
+                <br>
+                <label>4</label>
+            </td>
+        </tr>
+        <tr class="bai7">
+            <td><b>Our products are high quality</b></td>
+            <td>
+                <input type="radio" name="quality">
+                <br>
+                <label>1</label>
+            </td>
+            <td>
+                <input type="radio" name="quality">
+                <br>
+                <label>2</label>
+            </td>
+            <td>
+                <input type="radio" name="quality">
+                <br>
+                <label>3</label>
+            </td>
+            <td>
+                <input type="radio" name="quality">
+                <br>
+                <label>4</label>
+            </td>
+
+        <tr class="bai7">
+            <td><b>You would recommend our product to a friend or coworker.</b></td>
+            <td>
+                <input type="radio" name="rec">
+                <br>
+                <label>1</label>
+            </td>
+            <td>
+                <input type="radio" name="rec">
+                <br>
+                <label>2</label>
+            </td>
+            <td>
+                <input type="radio" name="rec">
+                <br>
+                <label>3</label>
+            </td>
+            <td>
+                <input type="radio" name="rec">
+                <br>
+                <label>4</label>
+            </td>
+        </tr>
+
+    </table>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form>
+<hr>
+
+
+<!--Bai tap 8: Tao gia dien form dang ky nguoi dung-->
+<h1 id="bai8">8. [Bài tập] Tạo giao diện form đăng ký người dùng</h1>
+<label>Ho va ten</label>
+<br>
+<input type="text" name="hoten">
+<br>
+<label>Email:</label>
+<br>
+<input type="email" name="email">
+<br>
+<label>So dien thoai</label>
+<br>
+<input type="text" name="sdt">
+<br>
+<label>Gioi tinh</label>
+<br>
+<input type="radio" name="gioitinh">Nam
+<input type="radio" name="gioitinh">Nu
+<br>
+<input type="submit" value="Dang ky">
+
+<hr>
+
+
+<!--Bai tap 9: Tao bang co ban-->
+<h1 id="bai9">9. [Thực hành] Tạo bảng cơ bản</h1>
+<table border="1px solid black">
+    <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Contry</th>
+    </tr>
+    <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+    </tr>
+    <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+    </tr>
+    <tr>
+        <td>Ernst Handel</td>
+        <td>Roland Mendel</td>
+        <td>Austria</td>
+    </tr>
+    <tr>
+        <td>Island Trading</td>
+        <td>Helen Bennett</td>
+        <td>UK</td>
+    </tr>
+    <tr>
+        <td>Laughing Bacchus Winecellars</td>
+        <td>Yoshi Tannamuri</td>
+        <td>Canada</td>
+    </tr>
+    <tr>
+        <td>Magazzini Alimentari Riuniti</td>
+        <td>Giovanni Rovelli</td>
+        <td>Italy</td>
+    </tr>
+</table>
+<hr>
+
+
+<!--Bai tap 10: Tao thoi khoa bieu don gian -->
+<h1 id="bai10">10. [Bài tập] Tạo bảng đơn giản (thời khoá biểu)</h1>
+<h2 style="text-align: center" >Thoi khoa bieu lop T0908I</h2>
+<table align="center" width="30%" border="1px">
+<tr>
+    <th style="background-color: yellow; text-align: center">Thu 3</th>
+    <th style="background-color: yellow;text-align: center">Thu 5</th>
+    <th style="background-color: yellow;text-align: center">Thu 7</th>
+</tr>
+<tr>
+    <td>CF-T1,L1</td>
+    <td>CF-T2,L2</td>
+    <td>CF-T3,L3</td>
+</tr>
+    <tr>
+        <td>CF-T4,L4</td>
+        <td>Written Test</td>
+        <td>C-T1,L1</td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<h2 style="text-align: center">THOI KHOA BIEU</h2>
+<div class="bai10-row">
+    <div class="bai10-col" style="text-align: left">
+        <p style="color: blue">Lop: T0908I</p>
+        <p style="color: blue">Giao vien: KhoaNV</p>
+        <p style="color: blue">Phong hoc: Class3/Lab3</p>
+    </div>
+    <div class="bai10-col" style="text-align: right">
+        <p style="color: blue">Thoi gian hoc: 13h30 - 17h30</p>
+        <p style="color: blue">Ngay hoc: Thu 3, 5, 7</p>
+    </div>
+</div>
+<table border="1px" align="center" width="100%">
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th style="background-color: yellow;text-align: center">Thu 3</th>
+        <th style="background-color: yellow;text-align: center">Thu 5</th>
+        <th style="background-color: yellow;text-align: center">Thu 7</th>
+    </tr>
+    <tr style="background-color: orange;text-align: center">
+        <th>Tuan</th>
+        <th>Ngay bat dau</th>
+        <th>Ngay ket thuc</th>
+        <th colspan="3">Mon hoc</th>
+    </tr>
+    <tr>
+        <td style="text-align: center">01</td>
+        <td>01/09/2019</td>
+        <td>05/09/2019</td>
+        <td>CF - T1, L1</td>
+        <td>CF - T2, L2</td>
+        <td>CF - T3, L3</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">02</td>
+        <td>08/09/2019</td>
+        <td>12/09/2019</td>
+        <td>CF - T4, L4</td>
+        <td>Written Test</td>
+        <td>C - T1, L1</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">03</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+    </tr>
+</table>
+<hr>
+
+<!--Bai tap 11: Tao bang nang cao (Ban co vua)-->
+<h1 id="bai11">11. [Bài tập] Tạo bảng nâng cao (bàn cờ vua)</h1>
+<h2 style="color: darkgreen">Bàn cờ vua</h2>
+<table style="height: 670px;width: 670px;border-spacing: 0px;border:0px" >
+    <tr style="background-color: orange;text-align: center;height: 20px;border: 0px">
+        <td style="width: 20px;border:0px"></td>
+        <td style="width: 40px;border:0px"><b>1</b></td>
+        <td style="width: 40px;border:0px"><b>2</b></td>
+        <td style="width: 40px;border:0px"><b>3</b></td>
+        <td style="width: 40px;border:0px"><b>4</b></td>
+        <td style="width: 40px;border:0px"><b>5</b></td>
+        <td style="width: 40px;border:0px"><b>6</b></td>
+        <td style="width: 40px;border:0px"><b>7</b></td>
+        <td style="width: 40px;border:0px"><b>8</b></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>A</b></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>B</b></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>C</b></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>D</b></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>E</b></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>F</b></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>G</b></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="background-color: orange;text-align: center;border:0px"><b>H</b></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="background-color: black;border:0px"></td>
+        <td style="background-color: white;border:0px"></td>
+        <td style="width: 10px;background-color: orange;border: 0px"></td>
+    </tr>
+    <tr style="background-color: orange;height: 10px";>
+        <td style="border: 0px" colspan="10"></td>
+
+    </tr>
+
+</table>
+<br>
+<br>
+<br>
+<h2 style="color: darkgreen">Lịch của một tháng</h2>
+
+<h2 style="text-align: center;color: blue">Thang 10 - October</h2>
+<table border="0px" width="100%" cellspacing="0">
+    <tr style="text-align: center;height: 40px">
+        <td style="background-color: red;width: 14%;border: 0px;color: white"><b>Chu nhat</b></td>
+        <td style="background-color: red;width: 14%;border: 0px;color: white"><b>T.Hai</b></td>
+        <td style="background-color: red;width: 14%;border: 0px;color: white"><b>T.Ba</b></td>
+        <td style="background-color: red;width: 14%;border: 0px;color: white"><b>T.Tu</b></td>
+        <td style="background-color: red;width: 14%;border: 0px;color: white"><b>T.Nam</b></td>
+        <td style="background-color: red;width: 14%;border: 0px;color: white"><b>T.Sau</b></td>
+        <td style="background-color: blue;width: 14%;border: 0px;color: white"><b>T.Bay</b></td>
+    </tr>
+    <tr style="text-align: center;height: 40px">
+       <td style="color: red;border: 0px">Sun</td>
+        <td style="color: black;border: 0px">Mon</td>
+        <td style="color: black;border: 0px">Tue</td>
+        <td style="color: black;border: 0px">Wed</td>
+        <td style="color: black;border: 0px">Thu</td>
+        <td style="color: black;border: 0px">Fri</td>
+        <td style="color: blue;border: 0px">Sat</td>
+    </tr>
+    <tr style="text-align: center">
+        <td><h1 style="color: red"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>1<sub style="font-size: large;color: black"><b>13</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>2<sub style="font-size: large;color: black"><b>14</b></sub></b></h1> </td>
+        <td><h1 style="color: blue"><b>3<sub style="font-size: large;color: black"><b>15</b></sub></b></h1> </td>
+    </tr>
+
+    <tr style="text-align: center">
+        <td><h1 style="color: red"><b>4<sub style="font-size: large;color: black"><b>16</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>5<sub style="font-size: large;color: black"><b>17</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>6<sub style="font-size: large;color: black"><b>18</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>7<sub style="font-size: large;color: black"><b>19</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>8<sub style="font-size: large;color: black"><b>20</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>9<sub style="font-size: large;color: black"><b>21</b></sub></b></h1> </td>
+        <td><h1 style="color: blue"><b>10<sub style="font-size: large;color: black"><b>22</b></sub></b></h1> </td>
+    </tr>
+
+    <tr style="text-align: center">
+        <td><h1 style="color: red"><b>11<sub style="font-size: large;color: black"><b>23</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>12<sub style="font-size: large;color: black"><b>24</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>13<sub style="font-size: large;color: black"><b>25</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>14<sub style="font-size: large;color: black"><b>26</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>15<sub style="font-size: large;color: black"><b>27</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>16<sub style="font-size: large;color: black"><b>28</b></sub></b></h1> </td>
+        <td><h1 style="color: blue"><b>17<sub style="font-size: large;color: black"><b>29</b></sub></b></h1> </td>
+    </tr>
+
+    <tr style="text-align: center">
+        <td><h1 style="color: red"><b>18<sub style="font-size: large;color: black"><b>1.9</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>19<sub style="font-size: large;color: black"><b>2</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>20<sub style="font-size: large;color: black"><b>3</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>21<sub style="font-size: large;color: black"><b>4</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>22<sub style="font-size: large;color: black"><b>5</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>23<sub style="font-size: large;color: black"><b>6</b></sub></b></h1> </td>
+        <td><h1 style="color: blue"><b>24<sub style="font-size: large;color: black"><b>7</b></sub></b></h1> </td>
+    </tr>
+
+    <tr style="text-align: center">
+        <td><h1 style="color: red"><b>25<sub style="font-size: large;color: black"><b>8</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>26<sub style="font-size: large;color: black"><b>9</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>27<sub style="font-size: large;color: black"><b>10</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>28<sub style="font-size: large;color: black"><b>11</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>29<sub style="font-size: large;color: black"><b>12</b></sub></b></h1> </td>
+        <td><h1 style="color: black"><b>30<sub style="font-size: large;color: black"><b>13</b></sub></b></h1> </td>
+        <td><h1 style="color: blue"><b>31<sub style="font-size: large;color: black"><b>14</b></sub></b></h1> </td>
+    </tr>
+
+</table>
+<hr>
+<br>
+<br>
+<br>
+
+
+<!--Bai tap 12: Thuc hanh Tao bang nang cao (thoi gian bieu)-->
+<h1 id="bai12">12. [Thực hành] Tạo bảng nâng cao (Thời khoá biểu)</h1>
+<h2>Thời khoá biểu</h2>
+<table width="100%"  cellspacing="0" border="0px">
+    <tr style="background-color: red;color: white">
+        <th rowspan="2" style="border-color: white;text-align: center">Thu</th>
+        <th colspan="2" style="border-color: white;text-align: center">Hoat dong</th>
+    </tr>
+    <tr style="background-color: red;color: white">
+        <th style="border-color: white;text-align: center">Sang</th>
+        <th style="border-color: white;text-align: center">Chieu</th>
+    </tr>
+    <tr>
+        <td style="text-align: center">Thu Hai</td>
+        <td style="text-align: center">The duc</td>
+        <td style="text-align: center">HD tro choi moi</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">Thu 3</td>
+        <td style="text-align: center">Nhan biet tap noi</td>
+        <td style="text-align: center">Ren ne nep,ky nang song</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">Thu 4</td>
+        <td style="text-align: center">Am nhac</td>
+        <td style="text-align: center">Vui choi</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">Thu 5</td>
+        <td style="text-align: center">Van hoc</td>
+        <td style="text-align: center">Nhan biet cac gia tri song</td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+</body>
+</html>
