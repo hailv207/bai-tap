@@ -8,6 +8,7 @@
         * {
             box-sizing: border-box;
         }
+
         .bai10-col {
             float: left;
             width: 50%;
@@ -22,28 +23,29 @@
         }
 
 
-        h1{
-            color:blue;
+        h1 {
+            color: blue;
         }
 
         .wufoo {
-            font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+            font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
         }
+
         .bai6-style {
             background-color: red;
             color: white;
         }
-        th,td{
+
+        th, td {
             border: 1px solid black;
         }
-.bai11 td{
-    border: 3px solid gray;
-}
+
+        .bai11 td {
+            border: 3px solid gray;
+        }
 
     </style>
 </head>
-
-
 
 
 <!--Phan noi dung trang web-->
@@ -139,21 +141,22 @@
 <!--Bai tap3: Tao trang CV ca nhan-->
 <h1 id="bai3">3. [Bài tập] Tạo trang CV cá nhân</h1>
 <div style="border:2px Solid green">
-    <img src="http://nobodyisnobody.weebly.com/uploads/5/3/5/8/53587273/814544_orig.jpg" alt="Can not load image." width="150" height="150">
+    <img src="http://nobodyisnobody.weebly.com/uploads/5/3/5/8/53587273/814544_orig.jpg" alt="Can not load image."
+         width="150" height="150">
     <p>Ho va ten: Nguyen Van A</p>
     <p>Dia chi: Van Quan, Ha Dong, Ha Noi.</p>
     <p>So dien thoai: 01234567890</p>
-    <p>Email: <a href="mailto:nguyuenvana@anymail.com">nguyenvana@anymail.com</a> </p>
+    <p>Email: <a href="mailto:nguyuenvana@anymail.com">nguyenvana@anymail.com</a></p>
 </div>
 <div style="border:2px solid green">
     <p>Hoc van: Dai hoc</p>
     <p>Bang cap: Cu nhan chuyen nganh Quan Tri Kinh Doanh</p>
     <p>Ky nang:
-        <ul>
-    <li> Ky nang lanh dao: 80%</li>
-    <li> Ky nang quan ly thoi gian: 90%</li>
-    <li> Ky nang phan tich, giai quyet van de: 100%</li>
-</ul>
+    <ul>
+        <li> Ky nang lanh dao: 80%</li>
+        <li> Ky nang quan ly thoi gian: 90%</li>
+        <li> Ky nang phan tich, giai quyet van de: 100%</li>
+    </ul>
     </p>
     <p>
         Kinh nghiem:
@@ -192,14 +195,14 @@
     <p>Name <span style="color:#ff0000">*</span></p>
     <input style="text" name="firstname" placeholder="FirstName" size="15" required>
     <input style="text" name="lastname" placeholder="LastName" size="15" required>
-<p>Email</p>
+    <p>Email</p>
     <input type="email" name="email" size="35">
     <p>Phone number</p>
     <input type="text" size="5" name="phone1"> -
     <input type="text" size="5" name="phone2"> -
     <input type="text" size="5" name="phone3">
     <br>
-<input type="button" name="submit" value="Submit">
+    <input type="button" name="submit" value="Submit">
 </form>
 
 <hr>
@@ -236,67 +239,68 @@
     <br>
     <input type="checkbox" multiple name="hobby">Du lich
     <br>
-  <input type="submit" value="Gui thong tin">
+    <input type="submit" value="Gui thong tin">
     <input type="reset" value="Nhap lai">
 </form>
-
-<form action="index.html" name="registerhv" method="get">
-    <h2 class="bai6-style">DANG KY HOC VIEN</h2>
-    <label style="color: blue">Ho va ten</label>
-    <input type="text" name="yourname">
-    <br>
-    <label style="color: blue">Ngay sinh</label>
-    <input type="date" name="ngaysinh">
-    <br>
-    <label style="color:blue">Gioi tinh</label>
-    <input type="radio" name="gioitinh">Nam
-    <input type="radio" name="gioitinh">Nu
-    <br>
-    <label style="color:blue">Dia chi</label>
-    <textarea name="diachi" rows="10" cols="30"></textarea>
-    <br>
-    <label style="color:blue">Lop</label>
-    <select name="lop" >
-        <option value="none" selected disabled hidden>
-            ---Chon lop---
-        </option>
-        <option name="lopA" value="Lop A">Lop A</option>
-        <option name="lopB" value="Lop B">Lop B</option>
-        <option name="lopC" value="Lop C">Lop C</option>
-    </select>
-    <br>
-    <label style="color:blue">Email</label>
-    <input type="email" name="email">
-    <br>
-    <label style="color:blue">Dien thoai</label>
-    <input type="text" name="dienthoai">
-    <br>
-    <input type="submit" value="Dang ky">
-    <input type="reset" value="Nhap lai">
-</form>
+<div>
+    <form action="index.html" name="registerhv" method="get">
+        <h2 class="bai6-style">DANG KY HOC VIEN</h2>
+        <div><label style="color: blue">Ho va ten</label></div>
+        <div><input type="text" name="yourname"></div>
+        <br>
+        <div><label style="color: blue">Ngay sinh</label></div>
+        <div><input type="date" name="ngaysinh"></div>
+        <br>
+        <label style="color:blue">Gioi tinh</label>
+        <input type="radio" name="gioitinh">Nam
+        <input type="radio" name="gioitinh">Nu
+        <br>
+        <label style="color:blue">Dia chi</label>
+        <textarea name="diachi" rows="10" cols="30"></textarea>
+        <br>
+        <label style="color:blue">Lop</label>
+        <select name="lop">
+            <option value="none" selected disabled hidden>
+                ---Chon lop---
+            </option>
+            <option name="lopA" value="Lop A">Lop A</option>
+            <option name="lopB" value="Lop B">Lop B</option>
+            <option name="lopC" value="Lop C">Lop C</option>
+        </select>
+        <br>
+        <label style="color:blue">Email</label>
+        <input type="email" name="email">
+        <br>
+        <label style="color:blue">Dien thoai</label>
+        <input type="text" name="dienthoai">
+        <br>
+        <input type="submit" value="Dang ky">
+        <input type="reset" value="Nhap lai">
+    </form>
+</div>
 <hr>
 
 <!--Bai tap 7: Tao form lay survey khach hang-->
 <h1 id="bai7">7. [Bài tập] Tạo form lấy survey khách hàng</h1>
 <form action="index.html" oninput="x.value=a.value.length">
-<h2>Market Research Survey</h2>
+    <h2>Market Research Survey</h2>
 
-<p>Please take a few moments to complete this satisfaction survey.</p>
-<p><b>What is yout age range?</b></p>
-<select name="age">
-    <option>18 - 24</option>
-    <option>25 - 34</option>
-    <option>35 - 50</option>
-    <option>50+</option>
-</select>
-<p><b>What is your yearly income range?</b></p>
-<select name="income">
-    <option>$0 - $25,000</option>
-    <option>$25,001 - $50,000</option>
-    <option>$50,000 - $100,000</option>
-    <option>$100,000+</option>
-</select>
-<p><b>Gender Identity</b></p>
+    <p>Please take a few moments to complete this satisfaction survey.</p>
+    <p><b>What is yout age range?</b></p>
+    <select name="age">
+        <option>18 - 24</option>
+        <option>25 - 34</option>
+        <option>35 - 50</option>
+        <option>50+</option>
+    </select>
+    <p><b>What is your yearly income range?</b></p>
+    <select name="income">
+        <option>$0 - $25,000</option>
+        <option>$25,001 - $50,000</option>
+        <option>$50,000 - $100,000</option>
+        <option>$100,000+</option>
+    </select>
+    <p><b>Gender Identity</b></p>
     <input type="radio" name="gender">Male
     <br>
     <input type="radio" name="gender">Female
@@ -305,9 +309,11 @@
     <br>
     <input type="radio" name="gender" value="">Other
     <br>
-    <input  type="text" name="gender" id="a" maxlength="250">
+    <input type="text" name="gender" id="a" maxlength="250">
     <br>
-    <label>Maximum of <b>250</b> characters.    Currently Used: </label><b><output name="x" for="a"></output></b><label> characters.</label>
+    <label>Maximum of <b>250</b> characters. Currently Used: </label><b>
+    <output name="x" for="a"></output>
+</b><label> characters.</label>
     <br>
     <p><b>Which of the following products have your purchased in the last 2 months. Please check all that apply.</b></p>
     <input type="checkbox" multiple>Product 1
@@ -316,7 +322,7 @@
     <br>
     <input type="checkbox" multiple>Product 3
     <br>
-<p><b>How often would you use our new product?</b></p>
+    <p><b>How often would you use our new product?</b></p>
     <input type="radio" name="often">Daily
     <br>
     <input type="radio" name="often">Weekly
@@ -484,18 +490,18 @@
 
 <!--Bai tap 10: Tao thoi khoa bieu don gian -->
 <h1 id="bai10">10. [Bài tập] Tạo bảng đơn giản (thời khoá biểu)</h1>
-<h2 style="text-align: center" >Thoi khoa bieu lop T0908I</h2>
+<h2 style="text-align: center">Thoi khoa bieu lop T0908I</h2>
 <table align="center" width="30%" border="1px">
-<tr>
-    <th style="background-color: yellow; text-align: center">Thu 3</th>
-    <th style="background-color: yellow;text-align: center">Thu 5</th>
-    <th style="background-color: yellow;text-align: center">Thu 7</th>
-</tr>
-<tr>
-    <td>CF-T1,L1</td>
-    <td>CF-T2,L2</td>
-    <td>CF-T3,L3</td>
-</tr>
+    <tr>
+        <th style="background-color: yellow; text-align: center">Thu 3</th>
+        <th style="background-color: yellow;text-align: center">Thu 5</th>
+        <th style="background-color: yellow;text-align: center">Thu 7</th>
+    </tr>
+    <tr>
+        <td>CF-T1,L1</td>
+        <td>CF-T2,L2</td>
+        <td>CF-T3,L3</td>
+    </tr>
     <tr>
         <td>CF-T4,L4</td>
         <td>Written Test</td>
@@ -562,7 +568,7 @@
 <!--Bai tap 11: Tao bang nang cao (Ban co vua)-->
 <h1 id="bai11">11. [Bài tập] Tạo bảng nâng cao (bàn cờ vua)</h1>
 <h2 style="color: darkgreen">Bàn cờ vua</h2>
-<table style="height: 670px;width: 670px;border-spacing: 0px;border:0px" >
+<table style="height: 670px;width: 670px;border-spacing: 0px;border:0px">
     <tr style="background-color: orange;text-align: center;height: 20px;border: 0px">
         <td style="width: 20px;border:0px"></td>
         <td style="width: 40px;border:0px"><b>1</b></td>
@@ -671,7 +677,7 @@
         <td style="background-color: white;border:0px"></td>
         <td style="width: 10px;background-color: orange;border: 0px"></td>
     </tr>
-    <tr style="background-color: orange;height: 10px";>
+    <tr style="background-color: orange;height: 10px" ;>
         <td style="border: 0px" colspan="10"></td>
 
     </tr>
@@ -694,7 +700,7 @@
         <td style="background-color: blue;width: 14%;border: 0px;color: white"><b>T.Bay</b></td>
     </tr>
     <tr style="text-align: center;height: 40px">
-       <td style="color: red;border: 0px">Sun</td>
+        <td style="color: red;border: 0px">Sun</td>
         <td style="color: black;border: 0px">Mon</td>
         <td style="color: black;border: 0px">Tue</td>
         <td style="color: black;border: 0px">Wed</td>
@@ -703,53 +709,53 @@
         <td style="color: blue;border: 0px">Sat</td>
     </tr>
     <tr style="text-align: center">
-        <td><h1 style="color: red"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>1<sub style="font-size: large;color: black"><b>13</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>2<sub style="font-size: large;color: black"><b>14</b></sub></b></h1> </td>
-        <td><h1 style="color: blue"><b>3<sub style="font-size: large;color: black"><b>15</b></sub></b></h1> </td>
+        <td><h1 style="color: red"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1></td>
+        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1></td>
+        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1></td>
+        <td><h1 style="color: black"><b><sub style="font-size: large;color: black"><b></b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>1<sub style="font-size: large;color: black"><b>13</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>2<sub style="font-size: large;color: black"><b>14</b></sub></b></h1></td>
+        <td><h1 style="color: blue"><b>3<sub style="font-size: large;color: black"><b>15</b></sub></b></h1></td>
     </tr>
 
     <tr style="text-align: center">
-        <td><h1 style="color: red"><b>4<sub style="font-size: large;color: black"><b>16</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>5<sub style="font-size: large;color: black"><b>17</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>6<sub style="font-size: large;color: black"><b>18</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>7<sub style="font-size: large;color: black"><b>19</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>8<sub style="font-size: large;color: black"><b>20</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>9<sub style="font-size: large;color: black"><b>21</b></sub></b></h1> </td>
-        <td><h1 style="color: blue"><b>10<sub style="font-size: large;color: black"><b>22</b></sub></b></h1> </td>
+        <td><h1 style="color: red"><b>4<sub style="font-size: large;color: black"><b>16</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>5<sub style="font-size: large;color: black"><b>17</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>6<sub style="font-size: large;color: black"><b>18</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>7<sub style="font-size: large;color: black"><b>19</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>8<sub style="font-size: large;color: black"><b>20</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>9<sub style="font-size: large;color: black"><b>21</b></sub></b></h1></td>
+        <td><h1 style="color: blue"><b>10<sub style="font-size: large;color: black"><b>22</b></sub></b></h1></td>
     </tr>
 
     <tr style="text-align: center">
-        <td><h1 style="color: red"><b>11<sub style="font-size: large;color: black"><b>23</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>12<sub style="font-size: large;color: black"><b>24</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>13<sub style="font-size: large;color: black"><b>25</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>14<sub style="font-size: large;color: black"><b>26</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>15<sub style="font-size: large;color: black"><b>27</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>16<sub style="font-size: large;color: black"><b>28</b></sub></b></h1> </td>
-        <td><h1 style="color: blue"><b>17<sub style="font-size: large;color: black"><b>29</b></sub></b></h1> </td>
+        <td><h1 style="color: red"><b>11<sub style="font-size: large;color: black"><b>23</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>12<sub style="font-size: large;color: black"><b>24</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>13<sub style="font-size: large;color: black"><b>25</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>14<sub style="font-size: large;color: black"><b>26</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>15<sub style="font-size: large;color: black"><b>27</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>16<sub style="font-size: large;color: black"><b>28</b></sub></b></h1></td>
+        <td><h1 style="color: blue"><b>17<sub style="font-size: large;color: black"><b>29</b></sub></b></h1></td>
     </tr>
 
     <tr style="text-align: center">
-        <td><h1 style="color: red"><b>18<sub style="font-size: large;color: black"><b>1.9</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>19<sub style="font-size: large;color: black"><b>2</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>20<sub style="font-size: large;color: black"><b>3</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>21<sub style="font-size: large;color: black"><b>4</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>22<sub style="font-size: large;color: black"><b>5</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>23<sub style="font-size: large;color: black"><b>6</b></sub></b></h1> </td>
-        <td><h1 style="color: blue"><b>24<sub style="font-size: large;color: black"><b>7</b></sub></b></h1> </td>
+        <td><h1 style="color: red"><b>18<sub style="font-size: large;color: black"><b>1.9</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>19<sub style="font-size: large;color: black"><b>2</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>20<sub style="font-size: large;color: black"><b>3</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>21<sub style="font-size: large;color: black"><b>4</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>22<sub style="font-size: large;color: black"><b>5</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>23<sub style="font-size: large;color: black"><b>6</b></sub></b></h1></td>
+        <td><h1 style="color: blue"><b>24<sub style="font-size: large;color: black"><b>7</b></sub></b></h1></td>
     </tr>
 
     <tr style="text-align: center">
-        <td><h1 style="color: red"><b>25<sub style="font-size: large;color: black"><b>8</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>26<sub style="font-size: large;color: black"><b>9</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>27<sub style="font-size: large;color: black"><b>10</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>28<sub style="font-size: large;color: black"><b>11</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>29<sub style="font-size: large;color: black"><b>12</b></sub></b></h1> </td>
-        <td><h1 style="color: black"><b>30<sub style="font-size: large;color: black"><b>13</b></sub></b></h1> </td>
-        <td><h1 style="color: blue"><b>31<sub style="font-size: large;color: black"><b>14</b></sub></b></h1> </td>
+        <td><h1 style="color: red"><b>25<sub style="font-size: large;color: black"><b>8</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>26<sub style="font-size: large;color: black"><b>9</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>27<sub style="font-size: large;color: black"><b>10</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>28<sub style="font-size: large;color: black"><b>11</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>29<sub style="font-size: large;color: black"><b>12</b></sub></b></h1></td>
+        <td><h1 style="color: black"><b>30<sub style="font-size: large;color: black"><b>13</b></sub></b></h1></td>
+        <td><h1 style="color: blue"><b>31<sub style="font-size: large;color: black"><b>14</b></sub></b></h1></td>
     </tr>
 
 </table>
@@ -762,7 +768,7 @@
 <!--Bai tap 12: Thuc hanh Tao bang nang cao (thoi gian bieu)-->
 <h1 id="bai12">12. [Thực hành] Tạo bảng nâng cao (Thời khoá biểu)</h1>
 <h2>Thời khoá biểu</h2>
-<table width="100%"  cellspacing="0" border="0px">
+<table width="100%" cellspacing="0" border="0px">
     <tr style="background-color: red;color: white">
         <th rowspan="2" style="border-color: white;text-align: center">Thu</th>
         <th colspan="2" style="border-color: white;text-align: center">Hoat dong</th>
@@ -792,11 +798,6 @@
         <td style="text-align: center">Nhan biet cac gia tri song</td>
     </tr>
 </table>
-
-
-
-
-
 
 
 </body>
