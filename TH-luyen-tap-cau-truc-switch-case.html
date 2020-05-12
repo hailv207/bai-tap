@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Luyện tập với cấu trúc switch-case</title>
+</head>
+<body>
+<script>
+
+    // switch (browser) {
+    //     case "Edge":
+    //         alert('You got Edge');
+    //         break;
+    //     case "Chrome":
+    //     case "Safari":
+    //     case "Firefox":
+    //     case "Opera":
+    //         alert('Ok. We support these browsers too')
+    //         break;
+    //     default:
+    //         alert('We hope that this page look ok')
+    // }
+
+
+    let a = parseInt(prompt('Nhap so a'));
+    switch (a) {
+        case 0:
+            alert(0);
+            break;
+        case 1:
+            alert(1);
+            break;
+        case 2:
+        case 3:
+            alert('2,3');
+            break;
+    }
+
+    let number = parseInt(prompt('Nhap so a'));
+    if (number > 0) {
+        alert(1);
+    } else if (number < 0) {
+        alert(-1);
+    } else {
+        alert(0);
+    }
+
+</script>
+</body>
+</html>
