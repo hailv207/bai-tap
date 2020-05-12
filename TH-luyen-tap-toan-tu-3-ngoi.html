@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Luyện tập với toán tử ba ngôi</title>
+</head>
+<body>
+<script>
+    let a = parseInt(prompt('Nhap vao so a'));
+    let b = parseInt(prompt('Nhap vao so b'));
+    (a  + b) < 4 ? alert('Below') : alert('Over');
+
+
+    let message;
+    let login = prompt('Ban la ai?');
+    (login === "Employee") ?
+        message = "hello" : (login === "Director") ?
+        message = "Greetings" : (login === '') ?
+            message = "No login" : message = '';
+    alert(message);
+</script>
+</body>
+</html>
