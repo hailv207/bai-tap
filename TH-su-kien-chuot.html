@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Sự kiện chuột</title>
+</head>
+<body>
+<div>
+
+    <img src="https://www.rebelsport.com.au/dw/image/v2/BBRV_PRD/on/demandware.static/-/Sites-srg-internal-master-catalog/default/dwb6bd3595/images/57942701/Rebel_57942701_whiteblack_hi-res.jpg?sw=558&sh=558&sm=fit"
+         id="myImg" style="width: 200">
+</div>
+<div>
+    <button type="button" onclick="moveRight();">Click to move the ball to the right</button>
+</div>
+
+
+<script>
+    let ImgObj = null;
+
+    function init() {
+        ImgObj = document.getElementById("myImg");
+        ImgObj.style.position = 'relative';
+        ImgObj.style.left = "0px";
+    }
+
+    function moveRight() {
+        ImgObj.style.left = parseInt(ImgObj.style.left) + 10 +'px';
+    }
+    window.onload=init();
+</script>
+</body>
+</html>
