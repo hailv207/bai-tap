@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Sự kiện bàn phím</title>
+</head>
+<body onload="doReady();init()">
+<img id="nobita" src="https://vignette.wikia.nocookie.net/the-gioi-anime-anime-world/images/a/aa/Download-1525567810.jpg/revision/latest?cb=20180506005010&path-prefix=vi" style="width: 100px">
+<script>
+
+let Obj = null;
+    function leftArrowPressed() {
+        Obj.style.left = parseInt(Obj.style.left) - 5 + 'px';
+
+    }
+
+    function rightArrowPressed() {
+
+        Obj.style.left = parseInt(Obj.style.left) + 5 + 'px';
+
+    }
+
+    function upArrowPressed() {
+
+        Obj.style.top = parseInt(Obj.style.top) - 5 + 'px';
+
+    }
+
+    function downArrowPressed() {
+        Obj.style.top = parseInt(Obj.style.top) + 5 + 'px';
+
+    }
+
+    function moveSelection(event) {
+        switch (event.keyCode) {
+            case 37:
+                leftArrowPressed();
+                break;
+            case 38:
+                upArrowPressed();
+                break;
+            case 39:
+                rightArrowPressed();
+                break;
+            case 40:
+                downArrowPressed();
+                break;
+
+        }
+    }
+
+    function doReady() {
+        window.addEventListener('keydown', moveSelection);
+    }
+    function init() {
+Obj = document.getElementById("nobita");
+Obj.style.position='relative';
+Obj.style.left = "200px";
+Obj.style.top = "200px";
+    }
+
+</script>
+</body>
+</html>
