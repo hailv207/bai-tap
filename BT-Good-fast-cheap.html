@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Ứng dụng good-fast-cheap</title>
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cccccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 30px;
+            width: 30px;
+            left: 0px;
+            bottom: -2px;
+            background-color: darkgray;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(50px);
+            -ms-transform: translateX(50px);
+            transform: translateX(50px);
+            background-color: lightgreen;
+        }
+
+        /*Rounded sliders*/
+        .slider.round {
+            border-radius: 504px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .switch2 {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 26px;
+        }
+
+        .switch2 input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider2 {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cccccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider2:before {
+            position: absolute;
+            content: "";
+            height: 30px;
+            width: 30px;
+            left: 0px;
+            bottom: -2px;
+            background-color: bisque;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider2 {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider2:before {
+            -webkit-transform: translateX(50px);
+            -ms-transform: translateX(50px);
+            transform: translateX(50px);
+            background-color: blueviolet;
+        }
+
+        /*Rounded sliders*/
+        .slider2.round {
+            border-radius: 50px;
+        }
+
+        .slider2.round:before {
+            border-radius: 50%;
+        }
+
+        .switch3 {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 26px;
+        }
+
+        .switch3 input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider3 {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cccccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider3:before {
+            position: absolute;
+            content: "";
+            height: 30px;
+            width: 30px;
+            left: 0px;
+            bottom: -2px;
+            background-color: lightblue;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider3 {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider3:before {
+            -webkit-transform: translateX(50px);
+            -ms-transform: translateX(50px);
+            transform: translateX(50px);
+            background-color: blue;
+        }
+
+        /*Rounded sliders*/
+        .slider3.round {
+            border-radius: 504px;
+        }
+
+        .slider3.round:before {
+            border-radius: 50%;
+        }
+
+        div {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <label class="switch">
+        <input type="checkbox" id="good" onchange="change('good')">
+        <span class=" slider round"></span>
+    </label>
+    <label>GOOD</label>
+</div>
+<div>
+    <label class="switch2">
+        <input type="checkbox" id="cheap" onchange="change('cheap')">
+        <span class="slider2 round"></span>
+    </label>
+    <label>CHEAP</label>
+</div>
+<div>
+    <label class="switch3">
+        <input type="checkbox" id="fast" onchange="change('fast')">
+        <span class=" slider3 round"></span>
+    </label>
+    <label>FAST</label>
+</div>
+
+<script>
+    function random() {
+        let r;
+        r = Math.floor(Math.random() * 2.9);
+        return r;
+    }
+
+    function checkOthers(current) {
+        let result = false;
+        switch (current) {
+            case "good":
+                result = (document.getElementById("cheap").checked  && document.getElementById("fast").checked);
+                break;
+            case "cheap":
+                result = (document.getElementById("good").checked && document.getElementById("fast").checked);
+                break;
+            case "fast":
+                result = (document.getElementById("cheap").checked && document.getElementById("good").checked);
+                break;
+        }
+        return result;
+    }
+
+    function change(current) {
+        switch (current) {
+            case "good":
+                if (checkOthers(current)){
+                    if (random() === 1) {
+                        document.getElementById("cheap").checked = false;
+                    } else {
+                        document.getElementById("fast").checked = false;
+                    }
+                }
+                break;
+            case "cheap":
+                if (checkOthers(current)){
+                    if (random() === 1) {
+                        document.getElementById("good").checked = false;
+                    } else {
+                        document.getElementById("fast").checked = false;
+                    }
+                }
+                break;
+            case "fast":
+                if (checkOthers(current)){
+                    if (random() === 1) {
+                        document.getElementById("good").checked = false;
+                    } else {
+                        document.getElementById("cheap").checked = false;
+                    }
+                }
+                break;
+        }
+    }
+
+</script>
+</body>
+</html>
