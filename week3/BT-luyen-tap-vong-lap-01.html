@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập vòng lặp 01</title>
+    <style>
+        h1 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>Bài 1: Sử dụng vòng lặp để đếm từ 1 đến 100. Khi số là 99, hiển thị hộp thoại thông báo là đã hoàn thành.</h1>
+<div id="scr1"></div>
+<div>
+    <button type="button" onclick="bai1()">RUN</button>
+</div>
+<hr>
+
+<h1>Bài 2: Sử dụng hàm prompt() để lấy thông tin nhiệt độ hiện tại được nhập bởi người truy cập. Nếu nhiệt độ nhập vào
+    trên 100, yêu cầu người dùng giảm nhiệt độ. Nếu nhiệt độ dưới 20, yêu cầu người dùng tăng nhiệt độ.</h1>
+<div id="scr2"></div>
+<div>
+    <button type="button" onclick="bai2()">RUN</button>
+</div>
+<hr>
+
+<h1>Bài 3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên.</h1>
+<div id="scr3"></div>
+<div>
+    <button type="button" onclick="bai3()">RUN</button>
+</div>
+<hr>
+
+<h1>Bài 4: Tìm số đầu tiên trong dãy fibonacci chia hết cho 5.</h1>
+<div id="scr4"></div>
+<div>
+    <button type="button" onclick="bai4()">RUN</button>
+</div>
+<hr>
+
+<h1>Bài 5: Tính tổng của 20 số đầu tiên trong dãy fibonacci.</h1>
+<div id="scr5"></div>
+<div>
+    <button type="button" onclick="bai5()">RUN</button>
+</div>
+<hr>
+
+<h1>Bài 6: Tính tổng của 30 số chia hết cho 7 đầu tiên trong các số tự nhiên.</h1>
+<div id="scr6"></div>
+<div>
+    <button type="button" onclick="bai6()">RUN</button>
+</div>
+<hr>
+
+<h1>Bài 7: Hãy viết một chương trình in ra các số từ 1 đến 100. Nhưng nếu số chia hết cho 3 thì in ra "Fizz", 5 thì in
+    ra "Buzz" thay vì in ra số đó. Và nếu số đó chia hết cho cả 3 và 5 thì in ra chữ "FizzBuzz".</h1>
+<div id="scr7"></div>
+<div>
+    <button type="button" onclick="bai7()">RUN</button>
+</div>
+<hr>
+
+<h1>Bài 8: Game đoán số</h1>
+<div id="scr8"></div>
+<div>
+    <button type="button" onclick="bai8()">RUN</button>
+</div>
+<hr>
+
+
+<script>
+    function bai1() {
+        let count_str = '';
+        for (let i = 1; i <= 100; i++) {
+            count_str += i + ' | ';
+            if (i == 99) {
+                alert('Da hoan thanh!');
+                break;
+            }
+
+        }
+        document.getElementById('scr1').innerHTML = count_str;
+    }
+
+    function bai2() {
+        let temp = 0;
+        while (temp < 20 || temp > 100) {
+            temp = parseInt(prompt('Xin moi nhap vao nhiet do'));
+            if (temp < 20) {
+                alert('Vui long tang nhiet do');
+            } else if (temp > 100) {
+                alert('Vui long giam nhiet do');
+            }
+        }
+        document.getElementById('scr2').innerHTML = 'Nhiet do la: ' + temp;
+
+    }
+
+    function bai3() {
+        let fn = 2;
+        let x = 0;
+        let prev2 = 0, prev1 = 1;
+        let count = 0;
+        let fibonacci_str = '';
+        while (count < 20) {
+            if (count < 2) {
+                fibonacci_str += count + " | ";
+            } else {
+                fn = prev1 + prev2;
+                prev1 = prev2;
+                prev2 = fn;
+                fibonacci_str += fn + ' | ';
+            }
+            count++;
+        }
+        document.getElementById('scr3').innerHTML = fibonacci_str;
+
+    }
+
+    function bai4() {
+        let fn = 2;
+        let prev2 = 1, prev1 = 1;
+        while (fn % 5 > 0) {
+            fn = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = fn;
+        }
+        document.getElementById('scr4').innerHTML = 'So Fibonacci dau tien chia het cho 5 la: ' + fn;
+
+    }
+
+    function bai5() {
+        let fn = 2;
+        let prev2 = 0, prev1 = 1;
+        let count = 0;
+        let sum = 0;
+        while (count < 20) {
+            if (count < 2) {
+                sum += count;
+            } else {
+                fn = prev1 + prev2;
+                prev1 = prev2;
+                prev2 = fn;
+                sum += fn;
+            }
+            count++;
+        }
+        document.getElementById('scr5').innerHTML = 'Tong 20 so Fibonacci dau tien la: ' + sum;
+    }
+
+    function bai6() {
+        let n = 0;
+        let count = 0;
+        let sum = 0;
+        while (count < 30) {
+            if (n % 7 == 0) {
+                sum += n;
+                count++;
+            }
+            n++;
+        }
+        document.getElementById('scr6').innerHTML = 'Tong 30 so tu nhien dau tien chia het cho 7: ' + sum;
+    }
+
+    function bai7() {
+        let n = 1;
+        let str = '';
+        for (n; n <= 100; n++) {
+            if (n % 3 == 0) {
+                if (n % 5 == 0) {
+                    str += 'FizzBuzz <br>';
+                } else {
+                    str += 'Fizz <br>';
+                }
+            } else if (n % 5 == 0) {
+                str += 'Buzz <br>';
+            } else {
+                str += n + '<br>';
+            }
+        }
+        document.getElementById('scr7').innerHTML = str;
+
+    }
+
+    function bai8() {
+        let min = parseInt(prompt('Nhap so nho nhat trong khoang du doan'));
+        let max = parseInt(prompt('Nhap so lon nhat trong khoang du doan'));
+        let count = 0;
+        let random = Math.floor(Math.random() * (max - min) + min);
+        while (count <= 3) {
+            let input = parseInt(prompt('Moi ban doan so'));
+            count++;
+            if (input > random) {
+                alert('So BI MAT nho hon so ban doan. So lan doan so con lai: ' + (3 - count));
+            }else if (input<random){
+                alert('So BI MAT lon hon so ban doan. So lan doan so con lai: ' + (3-count));
+            }else {
+                alert('Chuc mung ban da doan dung so BI MAT');
+                break;
+            }
+        }
+
+
+    }
+</script>
+</body>
+</html>
