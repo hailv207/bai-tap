@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Sử dụng vòng lặp for</title>
+    <style>
+        h1 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>Bài 1: Viết chương trình hiển thị chuỗi “The number is N” 5 lần sử dụng vòng lặp for. Với N sẽ hiển thị từ 0 đến
+    5.</h1>
+<div>
+    <div>
+        <label id="scr1"></label>
+    </div>
+    <div>
+        <button type="button" onclick="bai1()">RUN</button>
+    </div>
+</div>
+<hr>
+
+<h1>Bài 2: Viết chương trình nhập vào một số bất kỳ lớn hơn 0. Tính tổng các phần tử từ 1 đến số vừa nhập vào.</h1>
+<div>
+    <div>
+        <label id="scr2"></label>
+    </div>
+    <div>
+        <button type="button" onclick="bai2()">RUN</button>
+    </div>
+</div>
+<hr>
+
+
+<script>
+    function bai1() {
+        let text = '';
+        for (let i = 1; i <= 5; i++) {
+            text += i + '<br>';
+            document.getElementById('scr1').innerHTML = text;
+        }
+    }
+
+    function bai2() {
+        let n = parseInt(prompt('Nhap mot so bat ky lon hon 0'));
+        let sum = 0;
+        if (n >= 1) {
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            document.getElementById('scr2').innerHTML = 'Tong cac so tu 1 den ' + n + ' la: ' + sum;
+        }else {
+
+
+            document.getElementById('scr2').innerHTML = 'So nhap vao khong hop le';
+        }
+    }
+</script>
+</body>
+
+</html>
