@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Sinh bảng cửu chương</title>
+</head>
+<body>
+<script>
+    let text = "<table border='1' width='600' cellspacing='0' cellpadding='3'>";
+    let str ='';
+    for (let i = 1; i <= 9; i++) {
+        text += '<tr>';
+        for (let j = 2; j <= 9; j++) {
+            str = j + ' x ' + i +' = ' +i*j;
+            text += '<td>' + str + '</td>';
+        }
+        text += '</tr>';
+    }
+    text += '</table>'
+    document.write(text);
+</script>
+
+
+
+</body>
+</html>
