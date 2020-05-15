@@ -249,6 +249,15 @@
         alert('Khoan thue thu nhap ca nhan phai nop trong nam nay la: ' + tax_amount);
 
     }
+
+    function bank_rate_cal() {
+        let loan_amount = parseInt(prompt('Nhap khoan tien muon vay'));
+        let months = parseInt(prompt('Nhap thoi han vay (thang)'));
+        let rate = parseInt(prompt('Nhap lai suat vay (%/nam)'))/100;
+        let interest_per_month = loan_amount * (rate / 12);
+        let interest = interest_per_month * months;
+        alert('Tong so tien lai phai tra: ' + interest +' ; Lai phai tra hang thang: ' + interest_per_month);
+    }
 </script>
 </body>
 </html>
