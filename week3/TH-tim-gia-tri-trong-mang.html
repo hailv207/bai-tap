@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Tìm giá trị trong mảng</title>
+</head>
+<body>
+<script>
+    let arr = [1, 5, 7, 33, 8, 3, 88, 97, 555, 432, 132, 66, 9, 67];
+    let value = parseInt(prompt('Nhap so can tim'));
+    for (let i = 0; i <= arr.length - 1;i++) {
+        if (value == arr[i]) {
+            alert('Da tim thay gia tri o vi tri: ' + i);
+            break;
+        }
+    }
+</script>
+</body>
+</html>
