@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Đảo ngược các phần tử trong mảng</title>
+</head>
+<body>
+<div>
+    <input type="text" id="txt">
+    <button type="button" onclick="add()">ADD</button>
+    <button type="button" onclick="display()">DISPLAY</button>
+    <button type="button" onclick="reverse()">REVERSE</button>
+</div>
+<div id="scr"></div>
+
+
+<script>
+    let arr = [];
+    let count = 0;
+
+    function add() {
+        if (count <= 6) {
+            arr.push(document.getElementById('txt').value);
+            document.getElementById('txt').value = null;
+        }
+
+    }
+
+    function display() {
+        document.getElementById('scr').innerText = arr;
+    }
+    function reverse() {
+        let first = 0;
+        let last = arr.length-1;
+        let a;
+        while (first < last){
+            a = arr[first];
+            arr[first] = arr[last];
+            arr[last] = a;
+            first++;
+            last--;
+        }
+
+    }
+</script>
+</body>
+</html>
