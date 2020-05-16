@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Tạo và thao tác với mảng</title>
+</head>
+<body>
+<div>
+    <input type="text" id="txt">
+    <button type="button" onclick="add()">ADD</button>
+    <button type="button" onclick="display()">DISPLAY</button>
+    <hr>
+    <div id="scr"></div>
+</div>
+
+
+<script>
+    let arr = [];
+
+    function add() {
+        let value = document.getElementById('txt').value;
+        arr.push(value);
+    }
+
+    function display() {
+        let text = '';
+        for (let i = 0; i <= arr.length - 1; i++) {
+            text += 'Element ' + i + ': ' + arr[i];
+            text += '<br>';
+        }
+        document.getElementById('scr').innerHTML = text;
+    }
+</script>
+</body>
+</html>
