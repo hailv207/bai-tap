@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Tạo bàn cờ caro đơn giản</title>
+</head>
+<body>
+<div id="scr"></div>
+<hr>
+<button type="button" onclick="change()">CHANGE</button>
+
+
+<script>
+    let caro_board = [];
+    for (let i = 0; i <= 5; i++) {
+        caro_board[i] = new Array('o', 'o', 'o', 'o', 'o', 'o');
+    }
+    load_board();
+
+    function load_board(){
+    let text = '';
+    for (let i = 0; i <= 5; i++) {
+        for (let j = 0; j <= 5; j++) {
+            text += caro_board[i][j];
+            text += '&nbsp;&nbsp;';
+        }
+        text += '<br>';
+    }
+    document.getElementById('scr').innerHTML = text;
+    }
+
+    function change() {
+        let x = parseInt(prompt('X:'));
+        let y = parseInt(prompt('Y:'));
+        if (x >= 0 && x <= 5 && y >= 0 && y <= 5) {
+            caro_board[x][y] = 'x';
+            load_board()
+        }
+    }
+</script>
+</body>
+</html>
