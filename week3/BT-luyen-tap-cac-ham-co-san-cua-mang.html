@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Sử dụng các hàm có sẵn của mảng</title>
+    <style>
+        h1 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>Bài 1: Viết một chương trình Javascript để nối tất cả các phần tử trong một mảng chuỗi lại với nhau.</h1>
+<div id="scr1"></div>
+<button type="button" onclick="bai1()">RUN</button>
+<hr>
+
+<h1>Bài 2: Viết một chương trình nhận một số nhập vào và chèn dấu (-) giữa 2 số chẵn. </h1>
+<div id="scr2"></div>
+<button type="button" onclick="bai2()">RUN</button>
+<hr>
+
+
+<h1>Bài 3: Viết một chương trình nhập vào một chuỗi và chuyển các ký tự chữ thường trong chuỗi vừa nhập sang thành dạng
+    chữ hoa. </h1>
+<div id="scr3"></div>
+<button type="button" onclick="bai3()">RUN</button>
+<hr>
+
+
+<script>
+    function bai1() {
+        let arr = ['White', 'Black', 'Yellow', 'Blue', 'Pink'];
+        let text = arr.toString() + '<br>';
+        text += arr.join() + '<br>';
+        text += arr.join(' | ');
+        document.getElementById('scr1').innerHTML = text;
+
+    }
+
+    function bai2() {
+        let number = parseInt(prompt('Nhap mot chuoi so tu nhien'));
+        let str = number.toString();
+        let text = str[0];
+        for (let i = 1; i <= str.length - 1; i++) {
+            if (str[i - 1] % 2 == 0 && str[i] % 2 == 0) {
+                text += '-' + str[i];
+            } else {
+                text += str[i];
+            }
+        }
+        document.getElementById('scr2').innerText = text;
+
+
+    }
+
+    function bai3() {
+        let str = prompt('Nhap vao mot chuoi bat ky');
+        let reversed_str = '';
+        for (let i = 0; i <= str.length - 1; i++) {
+            if (str[i] == str[i].toUpperCase()) {
+                reversed_str += str[i].toLowerCase();
+            } else {
+                reversed_str += str[i].toUpperCase();
+            }
+        }
+        document.getElementById('scr3').innerHTML = str + '<br>' + reversed_str;
+    }
+</script>
+</body>
+</html>
