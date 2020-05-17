@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Tic tac toe</title>
+</head>
+<body>
+<div id="scr"></div>
+<div id="tb"></div>
+<button type="button" onclick="change()">CHANGE</button>
+
+
+<script>
+
+    let arr_board = [];
+    let text = '';
+    for (let i = 0; i < 20; i++) {
+        let arr_row = [];
+        for (let j = 0; j < 20; j++) {
+            arr_row[j] = '.';
+            text += arr_row[j] + '&nbsp;&nbsp;&nbsp;';
+        }
+        arr_board[i] = arr_row;
+        text += '<br>';
+
+        document.getElementById('scr').innerHTML = text;
+    }
+    let player = 'x';
+
+    function change() {
+        let x = parseInt(prompt('Row:'));
+        let y = parseInt(prompt('Column'));
+        if (x >= 0 && x <=19 && y >=0 && y <= 19){
+        if (player === 'o') {
+            player = 'x';
+        } else {
+            player = 'o';
+        }
+        arr_board[x][y] = player;
+        text = '';
+        for (let i = 0; i < arr_board.length; i++) {
+            for (let j = 0; j < arr_board[0].length; j++) {
+                text += arr_board[i][j] + '&nbsp;&nbsp;&nbsp;';
+            }
+            text += '<br>';
+        }
+        document.getElementById('scr').innerHTML = text;
+        check_win(x, y);
+        }else {
+            alert('Toa do khong hop le!');
+        }
+
+    }
+
+    function check_win(x, y) {
+        let row_win = false;
+        let col_win = false;
+        let down_left_win = false;
+        let down_right_win = false;
+        if ((arr_board[x][y] == arr_board[x + 1][y] && arr_board[x][y] == arr_board[x + 2][y]) ||
+            (arr_board[x][y] == arr_board[x + 1][y] && arr_board[x][y]== arr_board[x - 1][y]) ||
+            (arr_board[x][y] == arr_board[x - 1][y] && arr_board[x][y]== arr_board[x - 2][y])) {
+            col_win = true;
+
+        }
+        if ((arr_board[x][y] == arr_board[x][y + 1] && arr_board[x][y] == arr_board[x][y + 2]) ||
+            (arr_board[x][y] == arr_board[x][y + 1] && arr_board[x][y] == arr_board[x][y - 1]) ||
+            (arr_board[x][y] == arr_board[x][y - 1] && arr_board[x][y] == arr_board[x][y - 2])) {
+            row_win = true;
+
+        }
+        if ((arr_board[x][y] == arr_board[x + 1][y + 1] && arr_board[x][y] == arr_board[x + 2][y + 2]) ||
+            (arr_board[x][y] == arr_board[x + 1][y + 1] && arr_board[x][y] == arr_board[x - 1][y - 1]) ||
+            (arr_board[x][y] == arr_board[x - 1][y - 1] && arr_board[x][y] == arr_board[x - 2][y - 2])) {
+            down_right_win = true;
+
+        }
+        if ((arr_board[x][y] == arr_board[x + 1][y - 1] && arr_board[x][y] == arr_board[x + 2][y - 2]) ||
+            (arr_board[x][y] == arr_board[x + 1][y - 1] && arr_board[x][y] == arr_board[x - 1][y + 1]) ||
+            (arr_board[x][y] == arr_board[x - 1][y + 1] && arr_board[x][y] == arr_board[x - 2][y + 2])) {
+            down_left_win = true;
+
+        }
+        if (row_win || col_win || down_left_win || down_right_win) {
+            document.getElementById('tb').innerHTML = 'Nguoi choi ' + player + ' da thang.';
+        }
+        console.log(col_win);
+
+    }
+
+
+</script>
+</body>
+</html>
