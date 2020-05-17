@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Từ điển</title>
+</head>
+<body>
+<div>
+    <div>
+        <input type="text" id="input">
+    </div>
+    <div>
+        <button type="button" onclick="search()">SEARCH</button>
+    </div>
+    <div id="scr"></div>
+
+
+    <script>
+        let arr_en = ['hello', 'goodbye', 'name', 'school', 'class', 'sun', 'moon', 'light'];
+        let arr_vi = ['xin chao', 'tam biet', 'ten', 'truong hoc', 'lop hoc', 'mat troi', 'mat trang', 'anh sang'];
+
+        function search() {
+            let wordToSearch = document.getElementById('input').value;
+            let result_index = -1;
+            for (let i = 0; i < arr_en.length; i++) {
+                if (arr_en[i] == wordToSearch.toLowerCase()) {
+                    result_index = i;
+                    document.getElementById('scr').innerHTML = 'Nghia cua tu "' + wordToSearch + '" la: ' + arr_vi[result_index];
+                    break;
+                }
+            }
+            if (result_index == -1) {
+                document.getElementById('scr').innerText = 'Khong tim thay ket qua';
+            }
+        }
+    </script>
+</div>
+</body>
+</html>
