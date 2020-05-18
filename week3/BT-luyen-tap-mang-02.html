@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập mảng 02</title>
+    <style>
+        h1 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>Bài 1: Viết chương trình khởi tạo mảng 2 chiều, gồm một bộ các phần tử có sẵn, in ra các phần tử trong
+        mảng.</h1>
+    <div id="scr1"></div>
+    <button type="button" onclick="bai1()">RUN</button>
+</div>
+<hr>
+
+
+<div>
+    <h1>Bài 2: Viết một chương trình để in các ký tự trong một mảng theo thứ tự đảo ngược. Ví dụ, nếu một mảng chứa các
+        ký tự {'c', 's', 'c', '2', '6', '1'} sau khi thực hiện đảo ngược sẽ là "162csc"</h1>
+    <div id="scr2"></div>
+    <button type="button" onclick="bai2()">RUN</button>
+</div>
+<hr>
+
+
+<div>
+    <h1>Bài 3: Viết một chương trình khai báo một mảng ký tự và kích thước của mảng. Chương trình này đếm số ký tự số
+        trong mảng. </h1>
+    <div id="scr3"></div>
+    <button type="button" onclick="bai3()">RUN</button>
+</div>
+<hr>
+
+
+<div>
+    <h1>Bài 4: Viết một chương trình để đếm số từ trong một chuỗi</h1>
+    <div id="scr4"></div>
+    <button type="button" onclick="bai4()">RUN</button>
+</div>
+<hr>
+
+
+<div>
+    <h1>Bài 5: Viết một chương trình nhập vào 2 chuỗi, sau đó kiểm tra xem hai chuỗi có giống nhau hay không.</h1>
+    <div id="scr5"></div>
+    <button type="button" onclick="bai5()">RUN</button>
+</div>
+<hr>
+
+
+<div>
+    <h1>Bài 6: Viết chương trình nhập vào một mảng ký tự, tìm tất cả các ký tự trong mảng là (-) và thay thế các ký tự
+        này bởi ký tự ( _ )</h1>
+    <div id="scr6"></div>
+    <button type="button" onclick="bai6()">RUN</button>
+</div>
+<hr>
+
+
+<script>
+    function bai1() {
+        let arr = [];
+        for (let i = 0; i < 5; i++) {
+            let arr_i = [];
+            for (let j = 0; j < 5; j++) {
+                let v = parseInt(prompt('Nhap phan tu [' + i + '][' + j + '] cua mang'));
+                arr_i[j] = v;
+            }
+            arr[i] = arr_i;
+        }
+        let text = '';
+        for (let i = 0; i < arr.length; i++) {
+            text += 'Row ' + i + ': | ';
+            for (let j = 0; j < arr[i].length; j++) {
+                text += arr[i][j] + ' | ';
+            }
+            text += '<br>';
+        }
+        document.getElementById('scr1').innerHTML = text;
+    }
+
+    function bai2() {
+        let arr = [];
+        for (let i = 0; i < 5; i++) {
+            let v = prompt('Nhap gia tri bat ky');
+            arr.push(v);
+        }
+        let text = '| ';
+        for (let i = arr.length - 1; i >= 0; i--) {
+            text += arr[i] + ' | ';
+        }
+        document.getElementById('scr2').innerHTML = text;
+    }
+
+    function bai3() {
+        let arr = [];
+        for (let i = 0; i < 10; i++) {
+            let v = prompt('Nhap gia tri bat ky cho phan tu ' + i);
+            if (isNaN(parseFloat(v))) {
+                arr.push(v);
+            } else {
+                arr.push(parseFloat(v));
+            }
+        }
+        let text = '| ';
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (!isNaN(arr[i])) {
+                count++;
+                text += arr[i] + ' | ';
+            }
+        }
+        document.getElementById('scr3').innerHTML = 'Tong so phan tu trong mang: ' + arr.length + '<br> So phan tu la so trong mang: ' + count + '<br>' + text;
+
+
+    }
+
+    function bai4() {
+        let str = prompt('Nhap vao mot chuoi bat ky');
+        let count = 0;
+        if (str[0] != ' ') {
+            count++;
+        }
+        for (let i = 1; i < str.length; i++) {
+            if (str[i - 1] == ' ' && str[i] != ' ') {
+                count++;
+            }
+
+        }
+        document.getElementById('scr4').innerHTML = 'So tu trong chuoi la: ' + count;
+    }
+
+    function bai5() {
+        let str1 = prompt('Nhap chuoi 1');
+        let str2 = prompt('Nhap chuoi 2');
+        if (str1==str2){
+            document.getElementById('scr5').innerHTML = 'Chuoi 1 va chuoi 2 giong nhau';
+        }else {
+            document.getElementById('scr5').innerHTML = 'Chuoi 1 va chuoi 2 khong giong nhau';
+        }
+
+
+
+    }
+
+    function bai6() {
+        let arr = [];
+        for (let i = 0; i < 5; i++) {
+            let v = prompt('Nhap chuoi bat ky');
+            arr.push(v);
+        }
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (arr[i][j] == '-') {
+                    arr[i] = arr[i].substr(0, j) + '_' + arr[i].substr(j + 1, arr[i].length);
+                }
+            }
+        }
+        let text = '| ';
+        for (let i = 0; i < arr.length; i++) {
+            text += arr[i] + ' | ';
+        }
+        document.getElementById('scr6').innerHTML = text;
+
+    }
+</script>
+</body>
+</html>
