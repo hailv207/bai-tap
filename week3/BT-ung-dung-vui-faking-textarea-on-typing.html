@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Ứng dụng vui Faking Textarea on Typing</title>
+</head>
+<body>
+<h1>Type anything slowly</h1>
+<textarea id="input" onkeypress="fake_typing()"></textarea>
+
+
+<script>
+    const fake_str = 'On December 8th, 1915, Meggie Cleary had her fourth birthday. After the breakfast dishes were put away her ' +
+        'mother silently thrust a brown paper parcel into her arms and ordered her outside. So Meggie squatted down behind the gorse'
+        + 'bush next to the front gate and tugged impatiently. Her fingers were clumsy, the wrapping heavy; it smelled faintly of the'
+        + 'Wahine general store, which told her that whatever lay inside the parcel had miraculously been bought, not homemade or donated.'
+        + 'Something fine and mistily gold began to poke through a corner; she attacked the paper faster, peeling it away in long, ragged'
+        + 'strips. “Agnes! Oh, Agnes!” she said lovingly, blinking at the doll lying there in a tattered nest. A miracle indeed. Only once'
+        + 'in her life had Meggie been into Wahine; all the way back in May, because she had been a very good girl. So perched in the'
+        + 'buggy beside her mother, on her best behavior, she had been too excited to see or remember much. Except for Agnes, the beautiful'
+        + 'doll sitting on the store counter, dressed in a crinoline of pink satin with cream lace frills all over it. Right then and '
+        + 'there in her mind she had christened it Agnes, the only name she knew elegant enough for such a peerless creature. Yet over the'
+        + 'ensuing months her yearning after Agnes contained nothing of hope; Meggie didn’t own a doll and had no idea little girls and'
+        + 'dolls belonged together. She played happily with the whistles and slingshots and battered soldiers her brothers discarded, got'
+        + 'her hands dirty and her boots muddy. It never occurred to her that Agnes was to play with. Stroking the bright pink folds of the'
+        + 'dress, grander than any she had ever seen on a human woman, she picked Agnes up tenderly. The doll had jointed arms and legs'
+        + 'which could be moved anywhere; even her neck and tiny, shapely waist were jointed. Her golden hair was exquisitely dressed in a'
+        + 'high pompadour studded with pearls, her pale bosom peeped out of a foaming fichu of cream lace fastened with a pearl pin. The '
+        + 'finely painted bone china face was beautiful, left unglazed to give the delicately tinted skin a natural matte texture. '
+        + 'Astonishingly lifelike blue eyes shone between lashes of real hair, their irises streaked and circled with a darker blue; '
+        + 'fascinated, Meggie discovered that when Agnes lay back far enough, her eyes closed. High on one faintly flushed cheek she had '
+        + 'a black beauty mark, and her dusky mouth was parted slightly to show tiny white teeth. Meggie put the doll gently on her lap, '
+        + 'crossed her feet under her comfortably, and sat just looking.'
+
+    function fake_typing() {
+        let a = document.getElementById('input').value;
+        console.log(a);
+        let text = '';
+        for (let i = 0; i < a.length; i++) {
+            text += fake_str[i];
+        }
+        document.getElementById('input').value = '';
+        document.getElementById('input').value = text;
+        setTimeout("fake_typing()", 1);
+
+    }
+</script>
+</body>
+</html>
