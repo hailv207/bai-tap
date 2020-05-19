@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Hàm kiểm tra số nguyên tố</title>
+</head>
+<body>
+<div>
+    <input type="text" id="txt">
+    <button type="button" onclick="display()">CHECK</button>
+    <div id="scr"></div>
+</div>
+
+<script>
+    function checkPrime(number) {
+        let isPrime = true;
+        if (isNaN(number) || number < 2) {
+            isPrime = false;
+        } else {
+            isPrime = true;
+            for (let i = 2; i < number; i++) {
+                if (number % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+        }
+        return isPrime;
+    }
+
+    function display() {
+        let number = parseInt(document.getElementById('txt').value);
+        let text = 'Cac so nguyen to nho hon ' + number + ' la: <br> | ';
+        for (let i = number; i >= 2; i--) {
+            if (checkPrime(i)) {
+                text += i + ' | ';
+            }
+        }
+        document.getElementById('scr').innerHTML = text;
+    }
+</script>
+
+</body>
+</html>
