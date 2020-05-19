@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Chuyển đổi nhiệt độ</title>
+</head>
+<body>
+<div>
+    <label for="txt_Fah">Fahrenheit</label>
+    <input type="text" id="txt_Fah">
+    <button type="button" onclick="temp_convert()">CONVERT</button>
+</div>
+<div id="scr"></div>
+
+
+<script>
+    function temp_convert() {
+        let fahrenheit = parseFloat(document.getElementById('txt_Fah').value);
+        let celcius = (fahrenheit - 32) / 1.8;
+        document.getElementById('scr').innerHTML = 'Celcius: ' + celcius;
+    }
+</script>
+</body>
+</html>
