@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Kiểm tra từ đối xứng</title>
+</head>
+<body>
+<div id="scr"></div>
+<script>
+    let wordToCheck = 'hello world';
+    console.log(wordToCheck.replace(/ /gi, ''));
+    do {
+        wordToCheck = prompt('Vui long nhap mot tu bat ky va khong co khoang trang');
+    }
+    while (wordToCheck.replace(/ /gi, '').length != wordToCheck.length);
+
+    let isSymmetric = true;
+    for (let i = 0; i < wordToCheck.length / 2; i++) {
+        if (wordToCheck[i] != wordToCheck[wordToCheck.length - 1 - i]) {
+            isSymmetric = false;
+            break;
+        }
+    }
+    if (isSymmetric) {
+        document.getElementById('scr').innerText = wordToCheck + ' la mot tu doi xung';
+    } else {
+        document.getElementById('scr').innerText = wordToCheck + ' khong phai la mot tu doi xung';
+    }
+</script>
+</body>
+</html>
