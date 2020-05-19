@@ -5,21 +5,22 @@
     <title>Thuc hanh tren lop</title>
 </head>
 <body>
-<label for="lblfn">First Name</label>
-<input type="text" name="firstname" placeholder="Your first name" id="lblfn">
-<br>
-<label for="lblln">Last Name</label>
-<input name="lastname" type="text" placeholder="Your last name" id="lblln">
-<br>
 <script>
-    let number = 5;
-
-    if (number++ > 5) {
-        number += 1;
-    } else {
-        number -= 1;
+    // let number = 5;
+    //
+    // if (number++ > 5) {
+    //     number += 1;
+    // } else {
+    //     number -= 1;
+    // }
+    // console.log(number);
+    function func1(a){
+        if(a == 2)
+            return 2;
+        return a * func1(a - 1);
     }
-    console.log(number);
+    let xx = func1(5);
+    console.log(xx);
 </script>
 
 </body>
