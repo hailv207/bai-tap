@@ -60,11 +60,9 @@
 <body>
 <div>
     <div>
-        <input type="text" id="txt_add" style="width: 200px;height: 23px; background-color: lightblue">
+        <input type="text" id="txt_add" style="width: 300px;height: 23px; background-color: lightblue" placeholder="New Product">
         <button type="button" onclick="addNewProduct();loadProducts()"
-                style="width:120px;height: 30px;background-color:  lightgreen">Add new
-            product
-        </button>
+                style="height: 30px;background-color:  lightgreen">ADD NEW PRODUCT</button>
         <hr>
     </div>
     <div id="products_board">
@@ -84,8 +82,8 @@
         let text = '<table class="product_table" id="table"><tr><td class="header"></td><td class="header"><b>Product</b></td><td class="header"></td><td class="header"></td></tr>';
         for (let i = 0; i < product_list.length; i++) {
             text += '<tr id="tr' + i + '"><td style="width: 30px">' + (i + 1) + '</td>' + '<td class="product_col" id="td' + i + '">' + product_list[i] + '</td>'
-                + '<td align="center"><input class="edit_button" type="button" onclick="editProduct(' + i + ')" value="EDIT"></td>'
-                + '<td align="center"><input class="delete_button" type="button" onclick="deleteProduct(' + i + ')" value="DELETE"></td>'
+                + '<td align="center" style="width: 62px"><input class="edit_button" type="button" onclick="editProduct(' + i + ')" value="EDIT"></td>'
+                + '<td align="center" style="width: 62px"><input class="delete_button" type="button" onclick="deleteProduct(' + i + ')" value="DELETE"></td>'
                 + '</tr>';
         }
         document.getElementById('products_board').innerHTML = text;
