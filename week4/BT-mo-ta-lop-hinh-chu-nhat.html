@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả hình chữ nhật</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1700" height="800" ;></canvas>
+
+
+<script>
+    function classRectangle(a, b) {
+        this.a = a;
+        this.b = b;
+        this.getArea = function () {
+            return this.a * this.b;
+        };
+        this.getPerimeter = function () {
+            return 2 * (this.a + this.b);
+        };
+        this.draw = function (canvasID) {
+            let c = document.getElementById(canvasID);
+            let ctx = c.getContext('2d');
+            ctx.fillStyle = 'lightblue';
+            ctx.fillRect(30,30,this.a,this.b);
+        }
+    };
+    let rec = new classRectangle(200,50);
+    rec.draw('myCanvas');
+
+</script>
+</body>
+</html>
