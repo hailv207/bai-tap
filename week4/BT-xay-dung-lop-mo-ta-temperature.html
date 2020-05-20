@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả Temperature</title>
+</head>
+<body>
+<script>
+    function celciusTemperature(celcius) {
+        if (celcius >= -273) {
+            this.celcius = celcius;
+        } else {
+            this.celcius = -273;
+        }
+        ;
+
+        this.toFahrenheit = function () {
+            return this.celcius * 1.8 + 32;
+        };
+        this.toKenvin = function () {
+            return this.celcius + 273.15;
+        };
+        this.setValue = function (value) {
+            if (value >= -273) {
+                this.celcius = value;
+            } else {
+                this.celcius = -273;
+            }
+            ;
+        };
+    }
+
+    let value = parseFloat(prompt('Nhap nhiet do'));
+    let c = new celciusTemperature(value);
+    let v = parseFloat(prompt('Nhap nhiet do'));
+    c.setValue(v);
+    console.log(c.celcius);
+    console.log(c.toKenvin());
+    console.log(c.toFahrenheit());
+
+
+</script>
+</body>
+</html>
