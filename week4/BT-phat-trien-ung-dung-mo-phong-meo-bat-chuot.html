@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Phát triển ứng dụng mô phỏng lại quá trình mèo bắt chuột và ăn chuột.</title>
+</head>
+<body>
+<script>
+    let Cat = function (name, maxSpeed, bodyWeight) {
+        this.name = name;
+        this.maxSpeed = maxSpeed;
+        this.bodyWeight = bodyWeight;
+        this.say = function () {
+            return 'mew mew';
+        }
+        this.catchRat = function (rat) {
+            if (this.maxSpeed > rat.maxSpeed) {
+                this.catchedRat = rat;
+            }
+        }
+        this.eat = function () {
+            if (this.catchedRat.getAliveInfo()) {
+                this.bodyWeight += this.catchedRat.bodyWeight;
+                this.catchedRat.eaten();
+                this.catchedRat = {};
+            }
+        }
+        this.getBodyWeight = function () {
+            return this.bodyWeight;
+        }
+
+    }
+    let Rat = function (name, maxSpeed, bodyWeight) {
+        this.isAlive = true;
+        this.name = name;
+        this.maxSpeed = maxSpeed;
+        this.bodyWeight = bodyWeight;
+        this.getAliveInfo = function () {
+            return this.isAlive;
+        }
+        this.eaten = function () {
+            this.isAlive = false;
+            this.bodyWeight = 0;
+        }
+        this.say = function () {
+            return 'chit chit';
+        }
+        this.getBodyWeight = function () {
+            return this.bodyWeight;
+        }
+
+    }
+    let tom = new Cat('Tom', 100, 50);
+    let jerry = new Rat('Jerry', 80, 30);
+    tom.catchRat(jerry);
+    console.log(tom.catchedRat.name);
+    tom.eat();
+    console.log(tom.getBodyWeight());
+    console.log(jerry.getAliveInfo());
+    console.log(jerry.bodyWeight);
+    console.log(tom.catchedRat);
+    let fastRat = new Rat('fastrat', 120, 40);
+    tom.catchRat(fastRat);
+    console.log(tom.catchedRat);
+
+</script>
+</body>
+</html>
