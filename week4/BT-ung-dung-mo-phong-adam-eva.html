@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Phát triển ứng dụng nhỏ mô phỏng câu chuyện Adam và Eva</title>
+</head>
+<body>
+<script>
+    let Apple = function () {
+        this.weight = 10;
+        this.descreaseWeight = function () {
+            if (this.weight > 0) {
+                this.weight--;
+            } else {
+                alert('An lam an lon');
+            }
+        }
+        this.getWeight = function () {
+            return this.weight;
+        }
+        this.isEmpty = function () {
+            if (this.weight > 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+    let Human = function (name, gender, weight) {
+        this.name = name;
+        this.gender = gender;
+        this.weight = weight;
+        this.setGender = function (gender) {
+            if (gender == 'Male') {
+                this.gender = true;
+            } else if (gender == 'Female') {
+                this.gender = false;
+            }
+        }
+        this.getGender = function () {
+            if (gender) {
+                return 'Male';
+            } else {
+                return 'Female';
+            }
+        }
+        this.setName = function (name) {
+            this.name = name;
+        }
+        this.getWeight = function () {
+            return this.weight;
+        }
+
+        this.eat = function (apple) {
+            if (apple.weight > 0) {
+                this.weight++;
+                apple.descreaseWeight();
+            }
+        }
+        this.say = function () {
+            return 'Xin chao, toi la ' + this.name + '. Gioi tinh cua toi la ' + this.getGender()
+                + '. Can nang cua toi la ' + this.getWeight() + '.';
+        }
+        this.checkApple = function (apple) {
+           return !apple.isEmpty();
+        }
+    }
+
+    let adam = new Human('Adam', true, 80);
+    console.log(adam.say());
+    let eva = new Human('Eva', false, 60);
+    console.log(eva.say());
+    let apple = new Apple();
+    while (!apple.isEmpty()) {
+        if (adam.checkApple(apple)) {
+            adam.eat(apple);
+            console.log(adam.getWeight(), apple.getWeight());
+        }
+        if (eva.checkApple(apple)) {
+            eva.eat(apple);
+            console.log(eva.getWeight(), apple.getWeight());
+        }
+    }
+
+
+</script>
+</body>
+</html>
