@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Phát triển chương trình sử dụng Remote để điều khiển Tivi</title>
+</head>
+<body>
+<script>
+    let Television = function (name) {
+        this.name = name;
+        this.volume = 5;
+        this.showingProgram = 0;
+        this.status = false;
+        this.programs = ['Channel 1', 'Channel 2', 'Channel 3', 'Channel 4', 'Channel 5'];
+        this.turnOn = function () {
+            if (!this.status) {
+                this.status = !this.status;
+            }
+        }
+        this.turnOff = function () {
+            if (this.status) {
+                this.status = !this.status;
+            }
+        }
+        this.getShowingProgram = function () {
+            if (this.status) {
+                return this.programs[this.showingProgram];
+            }
+        }
+        this.nextProgram = function () {
+            if (this.status) {
+                if (this.showingProgram == this.programs.length - 1) {
+                    this.showingProgram = 0;
+                } else {
+                    this.showingProgram++;
+                }
+            }
+        }
+        this.previousProgram = function () {
+            if (this.status) {
+                if (this.showingProgram == 0) {
+                    this.showingProgram = this.programs.length - 1;
+                } else {
+                    this.showingProgram--;
+                }
+            }
+        }
+        this.getVolume = function () {
+            if (this.status) {
+                return this.volume;
+            }
+        }
+        this.volumeUp = function () {
+            if (this.status) {
+                if (this.volume < 10) {
+                    this.volume++;
+                }
+            }
+        }
+        this.volumeDown = function () {
+            if (this.status) {
+                if (this.volume > 0) {
+                    this.volume--;
+                }
+            }
+        }
+        this.changeProgram = function (programNumber) {
+            if (this.status) {
+                if (programNumber >= 1 && programNumber <= this.programs.length) {
+                    this.showingProgram = programNumber - 1;
+                }
+            }
+        }
+
+
+    }
+    let Remote = function (name) {
+        this.name = name;
+        this.connectTelevision = function (television) {
+            this.television = television;
+        }
+        this.turnOn = function () {
+            this.television.turnOn();
+        }
+        this.turnOff = function () {
+            this.television.turnOff();
+        }
+        this.changeProgram = function (program) {
+            this.television.changeProgram(program);
+
+        }
+        this.volumeUp = function () {
+            this.television.volumeUp();
+
+        }
+        this.volumeDown = function () {
+            this.television.volumeDown();
+
+        }
+        this.nextProgram = function () {
+            this.television.nextProgram();
+        }
+        this.previousProgram = function () {
+            this.television.previousProgram();
+        }
+    }
+    let livingroomTV = new Television('LivingroomTV');
+    let livingroomRemote = new Remote('LivingroomRemote');
+    livingroomRemote.connectTelevision(livingroomTV);
+    console.log(livingroomTV.status);
+    livingroomRemote.turnOn();
+    console.log(livingroomTV.status);
+    livingroomRemote.nextProgram();
+    console.log(livingroomTV.getShowingProgram());
+    livingroomRemote.changeProgram(3);
+    console.log(livingroomTV.getShowingProgram());
+    livingroomRemote.volumeDown();
+    console.log(livingroomTV.getVolume());
+    livingroomRemote.turnOff();
+    console.log(livingroomTV.status);
+    livingroomRemote.changeProgram(4);
+    console.log(livingroomTV.getShowingProgram());
+
+
+</script>
+</body>
+</html>
