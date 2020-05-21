@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả điện thoại</title>
+</head>
+<body>
+<script>
+
+    let Mobile = function (phoneName) {
+        this.name = phoneName;
+        this.inboxMessages = [];
+        this.sentMessages = [];
+        this.draftMessage = '';
+        this.turnOn = function () {
+            if (!this.status && this.battery > 0) {
+                this.status = true;
+                this.descreaseBattery();
+                alert(this.name + ' was turned on.');
+            }
+        }
+        this.turnOff = function () {
+            if (this.status && this.battery > 0) {
+                this.status = false;
+                this.descreaseBattery();
+                alert(this.name + ' was turn off.');
+            }
+        }
+        this.getStatus = function () {
+            return this.status;
+        }
+        this.chargeBattery = function () {
+            this.battery = 100;
+            alert(this.name + ' was charged.');
+        }
+        this.getBatteryInfo = function () {
+            if (this.status && this.battery > 0) {
+                return this.battery;
+                this.descreaseBattery();
+            }
+        }
+        this.sendMessage = function (phoneName, messageContent) {
+            if (this.status && this.battery > 0) {
+                if (phoneName.status && phoneName.battery > 0){
+                phoneName.receiveMessage(messageContent);
+                this.descreaseBattery();
+                alert('The message was sent to ' + phoneName.name);
+                this.saveSentMessage(messageContent);
+                }else{
+                    alert('Message was not sent. Please check status or battery of ' + phoneName.name);
+                }
+            }
+        }
+        this.saveDraftMessage = function (messageContent,) {
+            if (this.status && this.battery > 0) {
+                this.draftMessage = messageContent;
+                alert('Draft message was save');
+                this.descreaseBattery();
+            }
+        }
+        this.saveSentMessage = function (messageContent) {
+            if (this.status && this.battery > 0) {
+                this.sentMessages.push(messageContent);
+                alert('Sent message was saved');
+            }
+        }
+        this.getInboxMessages = function () {
+            if (this.status && this.battery > 0) {
+                return this.inboxMessages;
+                this.descreaseBattery();
+            }
+        }
+        this.receiveMessage = function (messageContent) {
+            if (this.status && this.battery > 0) {
+                this.inboxMessages.push(messageContent);
+            } else {
+                alert(this.name + 'can not receive message.');
+            }
+        }
+        this.descreaseBattery = function () {
+            if (this.battery > 0) {
+                this.battery--;
+            }
+        }
+        this.getSentMessages = function () {
+            if (this.status && this.battery > 0) {
+                return this.sentMessages;
+                this.descreaseBattery();
+            }
+        }
+    }
+    let nokia = new Mobile('Nokia');
+    nokia.chargeBattery();
+    let iPhone = new Mobile('iPhone');
+    iPhone.chargeBattery();
+    nokia.turnOn();
+    iPhone.turnOn();
+    nokia.sendMessage(iPhone, 'Xin chao iPhone');
+    nokia.sendMessage(iPhone, 'Day la tin nhan thu hai');
+    console.log('Nokia Sent Messages: ' + nokia.getSentMessages());
+    console.log('iPhone Inbox Messages: ' + iPhone.getInboxMessages());
+    console.log('Nokia battery: ' + nokia.getBatteryInfo());
+    console.log('iPhone battery: ' + iPhone.getBatteryInfo());
+    iPhone.turnOff();
+    console.log('Trang thai cua iPhone: ' + iPhone.getStatus());
+    nokia.sendMessage(iPhone,'iPhone co nhan duoc tin nhan khong?');
+
+
+</script>
+</body>
+</html>
