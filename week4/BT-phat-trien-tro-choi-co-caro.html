@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Phát triển trò chơi cờ ca-ro</title>
+    <style>
+        .clTable {
+            border: 1px solid olivedrab;
+            border-spacing: 0px;
+        }
+
+        td {
+            width: 20px;
+            height: 20px;
+            border: 1px solid olivedrab;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<label for="txtSize">Fill the size of game board (5 <= size <= 30) </label>
+<input type="text" id="txtSize">
+<button type="button" onclick="setSize(document.getElementById('txtSize').value)">RELOAD GAME</button>
+<div id="gameBoardArea">
+</div>
+
+
+<script>
+    let text = '<table id="gameBoardTable" class="clTable">';
+    let size = 20;
+    let defaultSymbol = '';
+    let arrayGameBoard = new Array();
+    let player = true;
+    let endGame = false;
+    let winStr = [];
+    let lastIndex = size -1;
+
+    createGameBoardArray();
+    loadGameBoard();
+
+
+    function setSize(value) {
+        let x = parseInt(value);
+        if (confirm('You are going to set the Game board size = ' + x + ' and Reload the game. Are you sure?') && !isNaN(x) && x >= 5 && x <= 30) {
+            size = parseInt(value);
+        }
+        createGameBoardArray();
+        loadGameBoard();
+    }
+
+    function createGameBoardArray() {
+        arrayGameBoard = [];
+        for (let i = 0; i < size; i++) {
+            let arr = new Array();
+            for (let j = 0; j < size; j++) {
+                arr.push(defaultSymbol);
+            }
+            arrayGameBoard.push(arr);
+        }
+    }
+
+    function loadGameBoard() {
+        let text = '<table id="tblGameBoard" class="clTable">';
+        for (let i = 0; i < size; i++) {
+            text += '<tr id="tr' + i + '">';
+            for (let j = 0; j < size; j++) {
+                text += '<td id="td' + i + j + '" onclick="play(' + i + ',' + j + ')">' + arrayGameBoard[i][j] + '</td>';
+            }
+            text += '</tr>'
+        }
+        document.getElementById('gameBoardArea').innerHTML = text;
+        endGame = false;
+        winStr = [];
+    }
+
+    function play(i, j) {
+        if (player) {
+            if (document.getElementById('td' + i + j).innerHTML == defaultSymbol && !endGame) {
+                arrayGameBoard[i][j] = 'X';
+                document.getElementById('td' + i.toString() + j.toString()).style.color = 'red';
+                document.getElementById('td' + i + j).innerHTML = 'X';
+                player = !player;
+                if (checkWin(i, j)) {
+                    alert('Nguoi choi X da thang');
+                    endGame = true;
+                    highlightWinLine();
+                }
+            }
+        } else {
+            if (document.getElementById('td' + i + j).innerHTML == defaultSymbol && !endGame) {
+                arrayGameBoard[i][j] = 'O';
+                document.getElementById('td' + i + j).style.color = 'blue';
+                document.getElementById('td' + i + j).innerHTML = 'O';
+                player = !player;
+                if (checkWin(i, j)) {
+                    alert('Nguoi choi O da thang');
+                    endGame = true;
+                    highlightWinLine();
+                }
+            }
+        }
+    }
+
+    function checkVerticalWin(i, j) {
+        let verticalWin1 = false;
+        let verticalWin2 = false;
+        let verticalWin3 = false;
+        let verticalWin4 = false;
+        let verticalWin5 = false;
+        if (lastIndex - i >= 4) {
+            verticalWin1 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j]
+                && arrayGameBoard[i][j] == arrayGameBoard[i + 3][j] && arrayGameBoard[i][j] == arrayGameBoard[i + 4][j];
+        }
+        if (verticalWin1) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + j);
+            winStr.push('td' + (i + 2) + j);
+            winStr.push('td' + (i + 3) + j);
+            winStr.push('td' + (i + 4) + j);
+        }
+        if (lastIndex - i >= 3 && i >= 1) {
+            verticalWin1 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j]
+                && arrayGameBoard[i][j] == arrayGameBoard[i + 3][j] && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j];
+        }
+        if (verticalWin2) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + j);
+            winStr.push('td' + (i + 2) + j);
+            winStr.push('td' + (i + 3) + j);
+            winStr.push('td' + (i - 1) + j);
+        }
+        if (lastIndex - i >= 2 && i >= 2) {
+            verticalWin3 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j] && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j];
+        }
+        if (verticalWin3) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + j);
+            winStr.push('td' + (i + 2) + j);
+            winStr.push('td' + (i - 1) + j);
+            winStr.push('td' + (i - 2) + j);
+        }
+        if (lastIndex - i >= 1 && i >= 3) {
+            verticalWin4 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j] && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j] && arrayGameBoard[i][j] == arrayGameBoard[i - 3][j];
+        }
+        if (verticalWin4) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + j);
+            winStr.push('td' + (i - 1) + j);
+            winStr.push('td' + (i - 2) + j);
+            winStr.push('td' + (i - 3) + j);
+        }
+        if (i >= 4) {
+            verticalWin5 = arrayGameBoard[i][j] == arrayGameBoard[i - 1][j] && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 3][j] && arrayGameBoard[i][j] == arrayGameBoard[i - 4][j];
+        }
+        if (verticalWin5) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i - 1).toString() + j);
+            winStr.push('td' + (i - 2).toString() + j);
+            winStr.push('td' + (i - 3).toString() + j);
+            winStr.push('td' + (i - 4).toString() + j);
+        }
+        return verticalWin1 || verticalWin2 || verticalWin3 || verticalWin4 || verticalWin5;
+    }
+
+    function checkHorizontalWin(i, j) {
+        let horizontalWin1 = false;
+        let horizontalWin2 = false;
+        let horizontalWin3 = false;
+        let horizontalWin4 = false;
+        let horizontalWin5 = false;
+
+        if (lastIndex - j >= 4) {
+            horizontalWin1 = arrayGameBoard[i][j] == arrayGameBoard[i][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i][j + 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i][j + 3] && arrayGameBoard[i][j] == arrayGameBoard[i][j + 4];
+        }
+        if (horizontalWin1) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + i + (j + 1));
+            winStr.push('td' + i + (j + 2));
+            winStr.push('td' + i + (j + 3));
+            winStr.push('td' + i + (j + 4));
+        }
+        if (lastIndex - j >= 3 && j >= 1) {
+            horizontalWin2 = arrayGameBoard[i][j] == arrayGameBoard[i][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i][j + 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i][j + 3] && arrayGameBoard[i][j] == arrayGameBoard[i][j - 1];
+        }
+        if (horizontalWin2) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + i + (j + 1));
+            winStr.push('td' + i + (j + 2));
+            winStr.push('td' + i + (j + 3));
+            winStr.push('td' + i + (j - 1));
+        }
+        if (lastIndex - j >= 2 && j >= 2) {
+            horizontalWin3 = arrayGameBoard[i][j] == arrayGameBoard[i][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i][j + 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i][j - 2];
+        }
+        if (horizontalWin3) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + i + (j + 1));
+            winStr.push('td' + i + (j + 2));
+            winStr.push('td' + i + (j - 1));
+            winStr.push('td' + i + (j - 2));
+        }
+        if (lastIndex - j >= 1 && j >= 3) {
+            horizontalWin4 = arrayGameBoard[i][j] == arrayGameBoard[i][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i][j - 1]
+                && arrayGameBoard[i][j] == arrayGameBoard[i][j - 2] && arrayGameBoard[i][j] == arrayGameBoard[i][j - 3];
+        }
+        if (horizontalWin4) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + i + (j + 1));
+            winStr.push('td' + i + (j - 1));
+            winStr.push('td' + i + (j - 2));
+            winStr.push('td' + i + (j - 3));
+        }
+        if (j >= 4) {
+            horizontalWin5 = arrayGameBoard[i][j] == arrayGameBoard[i][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i][j - 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i][j - 3] && arrayGameBoard[i][j] == arrayGameBoard[i][j - 4];
+        }
+        if (horizontalWin5) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + i + (j - 1));
+            winStr.push('td' + i + (j - 2));
+            winStr.push('td' + i + (j - 3));
+            winStr.push('td' + i + (j - 4));
+        }
+        return horizontalWin1 || horizontalWin2 || horizontalWin3 || horizontalWin4 || horizontalWin5;
+    }
+
+
+    function checkDownLeftWin(i, j) {
+        let downleftWin1 = false;
+        let downleftWin2 = false;
+        let downleftWin3 = false;
+        let downleftWin4 = false;
+        let downleftWin5 = false;
+        let x = arrayGameBoard.length - 1;
+        let y = arrayGameBoard[i].length - 1;
+
+        if (lastIndex - i >= 4 && j >= 4) {
+            downleftWin1 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j - 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i + 3][j - 3] && arrayGameBoard[i][j] == arrayGameBoard[i + 4][j - 4];
+        }
+        if (downleftWin1) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + (j - 1));
+            winStr.push('td' + (i + 2) + (j - 2));
+            winStr.push('td' + (i + 3) + (j - 3));
+            winStr.push('td' + (i + 4) + (j - 4));
+        }
+        if (lastIndex - i >= 3 && j >= 3 && i >= 1 && lastIndex - j >= 1) {
+            downleftWin2 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j - 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i + 3][j - 3] && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j + 1];
+        }
+        if (downleftWin2) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + (j - 1));
+            winStr.push('td' + (i + 2) + (j - 2));
+            winStr.push('td' + (i + 3) + (j - 3));
+            winStr.push('td' + (i - 1) + (j + 1));
+        }
+        if (lastIndex - i >= 2 && j >= 2 && i >= 2 && lastIndex - j >= 2) {
+            downleftWin3 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j - 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j + 2];
+        }
+        if (downleftWin3) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + (j - 1));
+            winStr.push('td' + (i + 2) + (j - 2));
+            winStr.push('td' + (i - 1) + (j + 1));
+            winStr.push('td' + (i - 2) + (j + 2));
+        }
+        if (lastIndex - i >= 1 && j >= 1 && i >= 3 && lastIndex - j >= 3) {
+            downleftWin4 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j + 1]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j + 2] && arrayGameBoard[i][j] == arrayGameBoard[i - 3][j + 3];
+        }
+        if (downleftWin4) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i + 1) + (j - 1));
+            winStr.push('td' + (i - 1) + (j + 1));
+            winStr.push('td' + (i - 2) + (j + 2));
+            winStr.push('td' + (i - 3) + (j + 3));
+        }
+        if (i >= 4 && lastIndex - j >= 4) {
+            downleftWin5 = arrayGameBoard[i][j] == arrayGameBoard[i - 1][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j + 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 3][j + 3] && arrayGameBoard[i][j] == arrayGameBoard[i - 4][j + 4];
+        }
+        if (downleftWin5) {
+            winStr.push('td' + i + j);
+            winStr.push('td' + (i - 1) + (j + 1));
+            winStr.push('td' + (i - 2) + (j + 2));
+            winStr.push('td' + (i - 3) + (j + 3));
+            winStr.push('td' + (i - 4) + (j + 4));
+        }
+        return downleftWin1 || downleftWin2 || downleftWin3 || downleftWin4 || downleftWin5;
+    }
+
+
+    function checkDownRightWin(i, j) {
+        let downrightWin1 = false;
+        let downrightWin2 = false;
+        let downrightWin3 = false;
+        let downrightWin4 = false;
+        let downrightWin5 = false;
+
+        if (lastIndex - i >= 4 && lastIndex - j >= 4) {
+            downrightWin1 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j + 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i + 3][j + 3] && arrayGameBoard[i][j] == arrayGameBoard[i + 4][j + 4];
+        }
+        if (downrightWin1) {
+            winStr.push('td' + (i).toString() + (j).toString());
+            winStr.push('td' + (i + 1).toString() + (j + 1).toString());
+            winStr.push('td' + (i + 2).toString() + (j + 2).toString());
+            winStr.push('td' + (i + 3).toString() + (j + 3).toString());
+            winStr.push('td' + (i + 4).toString() + (j + 4).toString());
+        }
+        if (lastIndex - i >= 3 && lastIndex - j >= 3 && i >= 1 && j >= 1) {
+            downrightWin2 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j + 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i + 3][j + 3] && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j - 1];
+        }
+        if (downrightWin2) {
+            winStr.push('td' + (i).toString() + (j).toString());
+            winStr.push('td' + (i + 1).toString() + (j + 1).toString());
+            winStr.push('td' + (i + 2).toString() + (j + 2).toString());
+            winStr.push('td' + (i + 3).toString() + (j + 3).toString());
+            winStr.push('td' + (i - 1).toString() + (j - 1).toString());
+        }
+        if (lastIndex - i >= 2 && lastIndex - j >= 2 && i >= 2 && j >= 2) {
+            downrightWin3 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j + 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j - 2];
+        }
+        if (downrightWin3) {
+            winStr.push('td' + (i).toString() + (j).toString());
+            winStr.push('td' + (i + 1).toString() + (j + 1).toString());
+            winStr.push('td' + (i + 2).toString() + (j + 2).toString());
+            winStr.push('td' + (i - 1).toString() + (j - 1).toString());
+            winStr.push('td' + (i - 2).toString() + (j - 2).toString());
+        }
+        if (lastIndex - i >= 1 && lastIndex - j >= 1 && i >= 3 && j >= 3) {
+            downrightWin4 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j + 1] && arrayGameBoard[i][j] == arrayGameBoard[i - 1][j - 1]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j - 2] && arrayGameBoard[i][j] == arrayGameBoard[i - 3][j - 3];
+        }
+        if (downrightWin4) {
+            winStr.push('td' + (i).toString() + (j).toString());
+            winStr.push('td' + (i + 1).toString() + (j + 1).toString());
+            winStr.push('td' + (i - 1).toString() + (j - 1).toString());
+            winStr.push('td' + (i - 2).toString() + (j - 2).toString());
+            winStr.push('td' + (i - 3).toString() + (j - 3).toString());
+        }
+        if (i >= 4 && j >= 4) {
+            downrightWin5 = arrayGameBoard[i][j] == arrayGameBoard[i - 1][j - 1] && arrayGameBoard[i][j] == arrayGameBoard[i - 2][j - 2]
+                && arrayGameBoard[i][j] == arrayGameBoard[i - 3][j - 3] && arrayGameBoard[i][j] == arrayGameBoard[i - 4][j - 4];
+        }
+        if (downrightWin5) {
+            winStr.push('td' + (i).toString() + (j).toString());
+            winStr.push('td' + (i - 1).toString() + (j - 1).toString());
+            winStr.push('td' + (i - 2).toString() + (j - 2).toString());
+            winStr.push('td' + (i - 3).toString() + (j - 3).toString());
+            winStr.push('td' + (i - 4).toString() + (j - 4).toString());
+        }
+        return downrightWin1 || downrightWin2 || downrightWin3 || downrightWin4 || downrightWin5;
+    }
+
+    function checkWin(i, j) {
+        return checkVerticalWin(i, j) || checkHorizontalWin(i, j) || checkDownLeftWin(i, j) || checkDownRightWin(i, j);
+    }
+
+    function highlightWinLine() {
+        if (winStr.length > 0) {
+            for (let i = 0; i < winStr.length; i++) {
+                document.getElementById(winStr[i]).style.backgroundColor = '#90ee90';
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
