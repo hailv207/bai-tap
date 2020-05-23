@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KIỂM TRA GIỮA MODULE PRE-BOOTCAMP 01</title>
+</head>
+<body>
+<h3>Bài 01: Khi nhấn vào button sẽ hiển thị các số nguyên tố từ 1 tới giá trị của ô input.</h3>
+<div>
+    <input type="text" id="txtBai1">
+    <button type="button" onclick="printPrime()">RUN</button>
+    <div id="scr1"></div>
+</div>
+<hr>
+
+<h3>Bài 02: Cho trước một mảng các phần tử số nguyên, viết hàm tính tổng các số lẻ trong mảng đó.</h3>
+<div>
+    <button type="button" onclick="bai2()">RUN</button>
+    <div id="scr2"></div>
+</div>
+<hr>
+
+<h3>Bài 03: Viết hàm tính tuổi của một người dựa vào năm sinh của họ.</h3>
+<div>
+    <input type="text" id="txtBai3">
+    <button type="button" onclick="calculateAge()">RUN</button>
+    <div id="scr3"></div>
+</div>
+<hr>
+
+<h3>Bài 04: Viết chương  trình đếm và  in  ra số  lượng các số nguyên chia hết cho 3 hoặc 7 nằm  trong đoạn 1 đến 100.</h3>
+<div>
+    <button type="button" onclick="checkDivisible()">RUN</button>
+    <div id="scr4"></div>
+</div>
+<hr>
+
+
+<h3>Bài 05: Tính tổng đường chéo chính của ma trận vuông.</h3>
+<div>
+    <button type="button" onclick="bai5()">RUN</button>
+    <div id="scr5"></div>
+</div>
+<hr>
+
+<script>
+    function printPrime() {
+        let maxNumber = parseInt(document.getElementById('txtBai1').value);
+        if (!isNaN(maxNumber) && maxNumber >= 2) {
+            let number = 2;
+            while (number <= maxNumber) {
+                let isPrime = true;
+                for (let i = 2; i < number; i++) {
+                    if (number % i == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime) {
+                    document.getElementById('scr1').innerHTML += number + '<br>';
+                }
+                number++;
+            }
+        }
+    }
+
+    function bai2() {
+        let arr = [1, 5, 6, 8, 3, 9, 12, 4, 33, 56];
+        let sum = sumOddInArray(arr);
+        document.getElementById('scr2').innerHTML = 'Tong cac so le cua mang [' + arr + '] la: ' + sum;
+    }
+
+    function sumOddInArray(array) {
+        if (array.length > 0) {
+            let sumOdd = 0;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] % 2 != 0) {
+                    sumOdd += array[i];
+                }
+            }
+            return sumOdd;
+        } else {
+            return undefined;
+        }
+    }
+
+    function calculateAge() {
+        let birthYear = parseInt(document.getElementById('txtBai3').value);
+        let currentYear = new Date().getFullYear();
+        if (birthYear <= currentYear && birthYear >= 1900) {
+            let age = currentYear - birthYear;
+            document.getElementById('scr3').innerHTML = 'Tuoi cua ban la: ' + age;
+        }
+    }
+
+    function checkDivisible() {
+        for (let i = 1; i <= 100; i++) {
+            if (i % 3 == 0 || i % 7 == 0) {
+                document.getElementById('scr4').innerHTML += i + '<br>';
+            }
+        }
+    }
+
+    function bai5() {
+        let arr = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]];
+        let sumDiagol = sumDiagonalLine(arr);
+        document.getElementById('scr5').innerHTML = 'Tong duong cheo chinh cua Mang la: ' + sumDiagol;
+    }
+
+    function sumDiagonalLine(array) {
+        if (array.length > 0 && array.length == array[0].length ) {
+            let sum = 0;
+            for (let i = 0; i < array.length; i++) {
+                for (let j = 0; j < array[i].length; j++) {
+                    if (i == j) {
+                        sum += array[i][j];
+                    }
+                }
+            }
+            return sum;
+        } else {
+            return undefined;
+        }
+    }
+
+</script>
+</body>
+</html>
