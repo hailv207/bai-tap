@@ -44,6 +44,7 @@
         let x = parseInt(value);
         if (confirm('You are going to set the Game board size = ' + x + ' and Reload the game. Are you sure?') && !isNaN(x) && x >= 5 && x <= 30) {
             size = parseInt(value);
+            lastIndex = size -1;
         }
         createGameBoardArray();
         loadGameBoard();
@@ -112,6 +113,7 @@
             verticalWin1 = arrayGameBoard[i][j] == arrayGameBoard[i + 1][j] && arrayGameBoard[i][j] == arrayGameBoard[i + 2][j]
                 && arrayGameBoard[i][j] == arrayGameBoard[i + 3][j] && arrayGameBoard[i][j] == arrayGameBoard[i + 4][j];
         }
+        console.log(lastIndex);
         if (verticalWin1) {
             winStr.push('td' + i + j);
             winStr.push('td' + (i + 1) + j);
