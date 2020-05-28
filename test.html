@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+</head>
+<body>
+    <canvas id="clockCanvas" width="400px" height="400px"></canvas>
+
+    <script>
+
+
+document.addEventListener('keydown',function(e){
+
+//SHIFT + something
+if(e.shiftKey){
+  switch(e.code){
+
+    case 'KeyS':
+      alert('Shift + S');
+      break;
+
+  }
+}
+
+//CTRL + SHIFT + something
+if(e.ctrlKey && e.shiftKey){
+  switch(e.code){
+
+    case 'KeyS':
+      alert('CTRL + Shift + S');
+      break;
+
+  }
+}
+
+});
+
+        // const SIZE = 400;
+
+        // function Clock(second, minute, hour, canvas) {
+        //     var self = this;
+        //     self.second = second;
+        //     self.minute = minute;
+        //     self.hour = hour;
+        //     self.canvas = canvas;
+        //     self.tickInterval = -1;
+
+        //     self.render = function () {
+        //         var context = self.canvas.getContext('2d');
+        //         context.clearRect(0, 0, SIZE, SIZE);
+        //         var center = SIZE / 2;
+        //         var radius = SIZE / 2;
+
+        //         //Draw the boundary
+        //         context.beginPath();
+        //         context.lineWidth = 1;
+        //         context.arc(center, center, radius, 0, Math.PI * 2);
+        //         context.stroke();
+        //         context.closePath();
+
+        //         //Draw numbers
+        //         self.drawNumbers();
+
+        //         //Draw the origin
+        //         var originSize = 10;
+        //         context.beginPath();
+        //         context.arc(center, center, originSize, 0, Math.PI * 2);
+        //         context.fill();
+        //         context.closePath();
+
+        //         //Draw the second
+        //         var secondLength = radius - 40;
+        //         var secondAngle = Math.PI + (Math.PI / 30) * self.second;
+        //         self.drawLine(secondLength, secondAngle, context, 2);
+
+        //         //Draw the minute
+        //         var minuteLength = radius - 70;
+        //         var minuteAngle = Math.PI + (Math.PI / 30) * self.minute;
+        //         self.drawLine(minuteLength, minuteAngle, context, 4);
+
+        //         //Draw the hour
+        //         var hourLength = radius - 100;
+        //         var hourAngle = Math.PI + (Math.PI / 6) * self.hour;
+        //         self.drawLine(hourLength, hourAngle, context, 6);
+
+        //     };
+
+        //     self.drawLine = function (length, angle, context, lineWidth) {
+        //         var center = SIZE / 2;
+        //         var x = length * Math.sin(-angle) + SIZE / 2;
+        //         var y = length * Math.cos(-angle) + SIZE / 2;
+        //         context.beginPath();
+        //         context.lineWidth = lineWidth;
+        //         context.moveTo(center, center);
+        //         context.lineTo(x, y);
+        //         context.stroke();
+        //         context.closePath();
+        //     };
+
+        //     self.drawNumbers = function () {
+        //         var context = self.canvas.getContext('2d');
+        //         context.lineWidth = 1;
+        //         var numberPadding = SIZE / 2 - 20;
+        //         for(var i = 1; i <= 12; i++){
+        //             var numberAngle = Math.PI + (Math.PI / 6) * i;
+        //             var numberX = numberPadding * Math.sin(-numberAngle) + SIZE / 2;
+        //             var numberY = numberPadding * Math.cos(-numberAngle) + SIZE / 2;
+        //             context.strokeText('' + i, numberX, numberY);
+        //         }
+        //     };
+
+        //     self.tick = function () {
+        //         self.second++;
+        //         if(self.second === 60){
+        //             self.second = 0;
+        //             self.minute++;
+        //             if(self.minute === 60){
+        //                 self.minute = 0;
+        //                 self.hour++;
+        //                 if(self.hour === 24){
+        //                     self.hour = 0;
+        //                 }
+        //             }
+        //         }
+        //         self.render();
+        //     };
+
+        //     self.start = function () {
+        //         self.tickInterval = setInterval(self.tick, 1000);
+        //     };
+
+        //     self.stop = function () {
+        //         if(self.tickInterval !== -1){
+        //             clearInterval(tickInterval);
+        //             self.tickInterval = -1;
+        //         }
+        //     }
+        // }
+
+        // var canvas = document.getElementById('clockCanvas');
+
+        // var clock = new Clock(0, 5, 10, canvas);
+
+        // clock.start();
+    </script>
+</body>
+</html>

@@ -14,7 +14,7 @@
         this.top = top;
         this.left = left;
         this.size = size;
-        this.speed = 20;
+        this.speed = 30;
 
         this.getHeroElement = function () {
             return '<img width="' + this.size + '"' +
@@ -49,7 +49,7 @@
             hero.moveRight();
             console.log('left' + hero.left);
         }
-        if (hero.left >= window.innerWidth - hero.size && hero.top < window.innerHeight -hero.size) {
+        if (hero.left >= window.innerWidth - hero.size ) {
             hero.moveDown();
             console.log('top' + hero.top);
         }
@@ -63,7 +63,7 @@
         }
 
         document.getElementById('game').innerHTML = hero.getHeroElement();
-        setTimeout(start, 200);
+        setTimeout(start, 20);
     }
 
     start();
