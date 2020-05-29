@@ -1,330 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>[*Bài tập] Phát triển game lái xe</title>
 </head>
-
 <body>
-    <canvas id="canvas" width="500px" height="600px" style="border: 2px solid red"></canvas>
-    <script>
-        let gameBoard = {
-            canvas: document.getElementById('canvas'),
-            context: this.canvas.getContext('2d'),
-            start: function () {
-                this.interval = setInterval(update, 20);
-            },
-            stop: function () {
-                clearInterval(this.interval);
-            },
-            clear: function () {
-                this.context.clearRect(0, 0, 500, 600);
+<canvas id="canvas" width="500px" height="600px" style="border: 2px solid red"></canvas>
+<script>
+
+    window.addEventListener('keydown', moveSelection);
+    let score = 0;
+    let coinValue = 3;
+    const numberOfObstacles = 5;
+    const numberOfCoins = 5;
+    let obstacles = [];
+    let coins = [];
+    let gameSpeed = 30;
+    let minWidth = 100;
+    let maxWidth = 300;
+    let minHeight = 50;
+    let maxHeight = 100;
+    let minGap = 500;
+    let maxGap = 600;
+    let gameBoard = {
+        canvas: document.getElementById('canvas'),
+        context: this.canvas.getContext('2d'),
+        start: function () {
+            this.interval = setInterval(update, gameSpeed);
+        },
+        stop: function () {
+            clearInterval(this.interval);
+        },
+        clear: function () {
+            this.context.clearRect(0, 0, 500, 600);
+        }
+    }
+
+    let Obstacle = function (context, left, top, width, height) {
+        this.width = width;
+        this.height = height;
+        this.top = top;
+        this.left = left;
+        this.update = function () {
+            context.fillStyle = 'darkgrey';
+            context.fillRect(this.left, this.top, this.width, this.height);
+        }
+        this.crashWith = function (otherObject) {
+            let myTop = this.top;
+            let myLeft = this.left;
+            let myBottom = this.top + this.height;
+            let myRight = this.left + this.width;
+            let otherLeft = otherObject.left;
+            let otherRight = otherObject.left + otherObject.width;
+            let otherTop = otherObject.top;
+            let otherBottom = otherObject.top + otherObject.height;
+            let crash = true;
+            if (myTop > otherBottom || myRight < otherLeft || myLeft > otherRight || myBottom < otherTop) {
+                crash = false;
+            }
+            return crash;
+
+        }
+    }
+
+
+    let Car = function (context, left, top, width, height) {
+        this.source = 'image/car.png';
+        this.image = new Image();
+        this.image.src = this.source;
+        this.width = width;
+        this.height = height;
+        this.top = top;
+        this.left = left;
+        this.speedX = 20;
+        this.myTop = this.top;
+        this.myLeft = this.left;
+        this.myRight = this.left + this.width;
+        this.myBottom = this.top + this.height;
+        this.update = function () {
+            context.drawImage(this.image, this.left, this.top, this.width, this.height);
+        }
+    }
+
+
+    let Background = function (left, top) {
+        this.image = new Image();
+        this.top = top;
+        this.left = left;
+        this.update = function () {
+            gameBoard.context.drawImage(this.image, this.left, this.top, 500, 600)
+        }
+    }
+    let roadBackground1 = new Background(0, 0);
+    roadBackground1.image.src = 'image/road.png';
+    let roadBackground2 = new Background(0, -600);
+    roadBackground2.image.src = 'image/road.png';
+
+    function Coin(context, left, top) {
+        this.image = new Image();
+        this.image.src = 'image/coin.png';
+        this.left = left;
+        this.top = top;
+        this.width = 30;
+        this.height = 30;
+        this.update = function () {
+            gameBoard.context.drawImage(this.image, this.left, this.top, this.width, this.height);
+        }
+        this.collectedBy = function (otherObject) {
+            let myTop = this.top;
+            let myLeft = this.left;
+            let myBottom = this.top + this.height;
+            let myRight = this.left + this.width;
+            let otherLeft = otherObject.left;
+            let otherRight = otherObject.left + otherObject.width;
+            let otherTop = otherObject.top;
+            let otherBottom = otherObject.top + otherObject.height;
+            let isCollected = true;
+            if (myTop > otherBottom || myRight < otherLeft || myLeft > otherRight || myBottom < otherTop) {
+                isCollected = false;
+            }
+            return isCollected;
+
+        }
+
+    }
+
+    function createCoin() {
+        for (let i = 0; i < numberOfCoins; i++) {
+            let left = Math.floor(Math.random() * (470));
+            let top = Math.floor(Math.random() * 300)
+            coins.push(new Coin(gameBoard.context, left, top));
+        }
+    }
+
+    function addNewCoin() {
+        for (let i = 0; i < coins.length; i++) {
+            if (coins[i].top >= 600) {
+                coins.splice(i, 1);
+                let left = Math.floor(Math.random() * 470);
+                let top = Math.floor(Math.random() * 0);
+                coins.push(new Coin(gameBoard.context, left, top));
             }
         }
-        let Object = function (imgSource, left, top, width, height) {
-            this.image = new Image();
-            this.image.src = imgSource;
-            this.left = left;
-            this.top = top;
-            this.width = width;
-            this.height = height;
-            this.right = this.left + this.width;
-            this.bottom = this.top + this.height;
-            this.update = function () {
-                gameBoard.context.drawImage(this.image, this.left, this.top, this.width, this.height);
+    }
+
+    function createObstacle() {
+        for (let i = 0; i < numberOfObstacles; i++) {
+            let width = Math.floor(Math.random() * (maxWidth - minWidth) + minWidth);
+            let height = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
+            let gap = Math.floor(Math.random() * (maxGap - minGap) + minGap);
+            let left = Math.floor(Math.random() * (500 - width));
+            let top;
+            if (i == 0) {
+                top = 0;
+            } else {
+                top = obstacles[i - 1].top - gap;
             }
-            this.crashWith = function (object) {
-                let crash = true;
-                if (this.left > object.right || this.right < object.left || this.top > object.bottom || this.bottom < object.top) {
-                    crash = false;
-                }
-                return crash;
+            obstacles.push(new Obstacle(gameBoard.context, left, top, width, height));
+
+        }
+
+    }
+
+
+    function addNewObstacle() {
+        for (let i = 0; i < obstacles.length; i++) {
+            if (obstacles[i].top >= 600) {
+                obstacles.splice(i, 1);
+                let width = Math.floor(Math.random() * (maxWidth - minWidth) + minWidth);
+                let height = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
+                let gap = Math.floor(Math.random() * (maxGap - minGap) + minGap);
+                let left = Math.floor(Math.random() * (500 - width));
+                let top = obstacles[obstacles.length - 1].top - gap;
+                let newObs = new Obstacle(gameBoard.context, left, top, width, height);
+                obstacles.push(newObs);
+                score += 1;
             }
         }
 
-        let myCar = new Object('image/car.png', 225, 350, 50, 100);
-        let obsOnScreen = 5;
-        let obstacles = [];
-        let coinsOnScreen = 5;
-        let coins = [];
-        let gameSpeed = 5;
-        let score = 0;
-        let coinValue = 3;
-        let isImmortal = false;
-        const IMMORTAL_COUNTDOWN = 150;
-        const EFFECT_COUNTDOWN = 50;
-        
+    }
+    let carObj = new Car(gameBoard.context, 225, 450, 50, 100);
+    createObstacle();
+    createCoin();
+    function moveForward() {
+        if (roadBackground1.top == 0) {
+            roadBackground2.top = -600;
+        }
+        if (roadBackground2.top == 0) {
+            roadBackground1.top = -600;
+        }
+        roadBackground1.top += 5;
+        roadBackground2.top += 5;
+        for (let i = 0; i < obstacles.length; i++) {
+            obstacles[i].top += 5;
+        }
+        for (let i = 0; i < coins.length; i++){
+            coins[i].top += 5;
+        }
 
-        function ()
+    }
 
+    function moveLeft() {
+        if (carObj.left > carObj.speedX) {
+            carObj.left -= carObj.speedX;
+        }
+    }
 
+    function moveRight() {
+        if (carObj.left < 450 - carObj.speedX) {
+            carObj.left += carObj.speedX;
+        }
+    }
 
+    function updateScoreBoard() {
+        gameBoard.context.fillStyle = 'yellow';
+        gameBoard.context.font = '30px Arial';
+        gameBoard.context.fillText('Score: ' + score, 30, 30);
 
+    }
 
+    function update() {
+        gameBoard.clear();
+        roadBackground1.update();
+        roadBackground2.update();
+        addNewObstacle();
+        addNewCoin();
+        moveForward();
+        carObj.update();
+        for (let i = 0; i < obstacles.length; i++) {
+            obstacles[i].update();
+            if (obstacles[i].crashWith(carObj)) {
+                gameBoard.stop();
+            }
+        }
+        for (let i = 0; i < coins.length; i++){
+            coins[i].update();
+            if (coins[i].collectedBy(carObj)){
+                score += coinValue;
+                coins.splice(i, 1);
+                let left = Math.floor(Math.random() * 470);
+                let top = Math.floor(Math.random() * 300)
+                coins.push(new Coin(gameBoard.context, left, top));
+            }
+        }
+        updateScoreBoard();
+    }
 
+    function newGame() {
+        gameSpeed = 30;
+        score = 0;
+        gameBoard.clear();
+        createObstacle();
+        carObj.left = 225;
+        gameBoard.start();
 
+    }
 
+    function moveSelection(event) {
+        switch (event.keyCode) {
+            case 17:
+                gameSpeed = 20;
+                gameBoard.stop();
+                gameBoard.start();
+                break;
+            case 37:
+                moveLeft();
+                break;
 
-
-
-
-        // let score = 0;
-        // let coinValue = 3;
-        // const numberOfObstacles = 5;
-        // const numberOfCoins = 5;
-        // let obstacles = [];
-        // let coins = [];
-        // let gameSpeed = 5;
-        // let minGap = 120;
-        // let maxGap = 200;
-        // let gameBoard = {
-        //     canvas: document.getElementById('canvas'),
-        //     context: this.canvas.getContext('2d'),
-        //     start: function () {
-        //         this.interval = setInterval(update, 20);
-        //     },
-        //     stop: function () {
-        //         clearInterval(this.interval);
-        //     },
-        //     clear: function () {
-        //         this.context.clearRect(0, 0, 500, 600);
-        //     }
-        // }
-
-        // let Obstacle = function (imgSource, left, top) {
-        //     this.image = new Image();
-        //     this.image.src = imgSource;
-        //     this.width = 50;
-        //     this.height = 100;
-        //     this.top = top;
-        //     this.left = left;
-        //     this.update = function () {
-        //         gameBoard.context.drawImage(this.image, this.left, this.top, this.width, this.height);
-        //     }
-        //     this.crashWith = function (otherObject) {
-        //         let myTop = this.top;
-        //         let myLeft = this.left;
-        //         let myBottom = this.top + this.height;
-        //         let myRight = this.left + this.width;
-        //         let otherLeft = otherObject.myLeft;
-        //         let otherRight = otherObject.myRight;
-        //         let otherTop = otherObject.myTop;
-        //         let otherBottom = otherObject.myBottom;
-        //         let crash = true;
-        //         if (myTop > otherBottom || myRight < otherLeft || myLeft > otherRight || myBottom < otherTop) {
-        //             crash = false;
-        //         }
-        //         return crash;
-
-        //     }
-        // }
-        // window.addEventListener('keydown', moveSelection);
-
-        // let Car = function (left, top, width, height) {
-        //     this.source = 'image/car.png';
-        //     this.image = new Image();
-        //     this.image.src = this.source;
-        //     this.width = width;
-        //     this.height = height;
-        //     this.top = top;
-        //     this.left = left;
-        //     this.speedX = 20;
-        //     this.myTop = this.top;
-        //     this.myLeft = this.left;
-        //     this.myRight = this.left + this.width;
-        //     this.myBottom = this.top + this.height;
-        //     this.update = function () {
-        //         gameBoard.context.drawImage(this.image, this.left, this.top, this.width, this.height);
-        //     }
-        // }
-
-
-        // let Background = function (left, top) {
-        //     this.image = new Image();
-        //     this.top = top;
-        //     this.left = left;
-        //     this.update = function () {
-        //         gameBoard.context.drawImage(this.image, this.left, this.top, 500, 600)
-        //     }
-        // }
-        // let roadBackground1 = new Background(0, 0);
-        // roadBackground1.image.src = 'image/road.png';
-        // let roadBackground2 = new Background(0, -600);
-        // roadBackground2.image.src = 'image/road.png';
-
-        // function Coin(left, top) {
-        //     this.image = new Image();
-        //     this.image.src = 'image/coin.png';
-        //     this.left = left;
-        //     this.top = top;
-        //     this.width = 30;
-        //     this.height = 30;
-        //     this.update = function () {
-        //         gameBoard.context.drawImage(this.image, this.left, this.top, this.width, this.height);
-        //     }
-        //     this.collectedBy = function (otherObject) {
-        //         let myTop = this.top;
-        //         let myLeft = this.left;
-        //         let myBottom = this.top + this.height;
-        //         let myRight = this.left + this.width;
-        //         let otherLeft = otherObject.left;
-        //         let otherRight = otherObject.left + otherObject.width;
-        //         let otherTop = otherObject.top;
-        //         let otherBottom = otherObject.top + otherObject.height;
-        //         let isCollected = true;
-        //         if (myTop > otherBottom || myRight < otherLeft || myLeft > otherRight || myBottom < otherTop) {
-        //             isCollected = false;
-        //         }
-        //         return isCollected;
-
-        //     }
-
-        // }
-
-        // function createCoin() {
-        //     for (let i = 0; i < numberOfCoins; i++) {
-        //         let left = Math.floor(Math.random() * (470));
-        //         let top = Math.floor(Math.random() * 350)
-        //         coins.push(new Coin(gameBoard.context, left, top));
-        //     }
-        // }
-
-        // function addNewCoin() {
-        //     for (let i = 0; i < coins.length; i++) {
-        //         if (coins[i].top >= 600) {
-        //             coins.splice(i, 1);
-        //             let left = Math.floor(Math.random() * 470);
-        //             let top = Math.floor(Math.random() * 0);
-        //             coins.push(new Coin(gameBoard.context, left, top));
-        //         }
-        //     }
-        // }
-
-        // function createObstacle() {
-        //     for (let i = 0; i < numberOfObstacles; i++) {
-        //         let top;
-        //         let left;
-        //         if (i == 0) {
-        //             top = -100;
-        //         } else {
-        //             top = obstacles[i - 1].top - Math.floor(Math.random() * (maxGap - minGap) + minGap);
-        //         }
-        //         left = Math.floor(Math.random() * 450);
-        //         let obsSourceIndex = Math.floor(Math.random() * 4);
-        //         obstacles.push(new Obstacle('image/obs' + obsSourceIndex + '.png', gameBoard.context, left, top));
-        //     }
-
-        // }
+            case 39:
+                moveRight();
+                break;
+        }
+    }
 
 
-        // function addNewObstacle() {
-        //     for (let i = 0; i < obstacles.length; i++) {
-        //         if (obstacles[i].top >= 600) {
-        //             obstacles.splice(i, 1);
-        //             top = obstacles[obstacles.length - 1].top - Math.floor(Math.random() * (maxGap - minGap) + minGap);
-        //             left = Math.floor(Math.random() * 450);
-        //             let obsSourceIndex = Math.floor(Math.random() * 4);
-        //             let newObs = new Obstacle('image/obs' + obsSourceIndex + '.png', gameBoard.context, left, top);
-        //             obstacles.push(newObs);
-        //             score += 1;
-        //         }
-        //     }
-
-        // }
-        // let carObj = new Car(gameBoard.context, 225, 450, 50, 100);
-        // createObstacle();
-        // console.log(obstacles);
-        // createCoin();
-        // function moveForward() {
-        //     if (roadBackground1.top == 0) {
-        //         roadBackground2.top = -600;
-        //     }
-        //     if (roadBackground2.top == 0) {
-        //         roadBackground1.top = -600;
-        //     }
-        //     roadBackground1.top += gameSpeed;
-        //     roadBackground2.top += gameSpeed;
-        //     for (let i = 0; i < obstacles.length; i++) {
-        //         obstacles[i].top += gameSpeed + 2;
-        //     }
-        //     for (let i = 0; i < coins.length; i++) {
-        //         coins[i].top += gameSpeed;
-        //     }
-
-        // }
-
-        // function moveLeft() {
-        //     if (carObj.left > carObj.speedX) {
-        //         carObj.left -= carObj.speedX;
-        //     }
-        // }
-
-        // function moveRight() {
-        //     if (carObj.left < 450 - carObj.speedX) {
-        //         carObj.left += carObj.speedX;
-        //     }
-        // }
-
-        // function updateScoreBoard() {
-        //     gameBoard.context.fillStyle = 'yellow';
-        //     gameBoard.context.font = '30px Arial';
-        //     gameBoard.context.fillText('Score: ' + score, 30, 30);
-
-        // }
-
-        // function update() {
-        //     gameBoard.clear();
-        //     roadBackground1.update();
-        //     roadBackground2.update();
-        //     addNewObstacle();
-        //     addNewCoin();
-        //     moveForward();
-        //     carObj.update();
-        //     for (let i = 0; i < obstacles.length; i++) {
-        //         obstacles[i].update();
-        //         if (obstacles[i].crashWith(carObj)) {
-        //             gameBoard.stop();
-        //         }
-        //     }
-        //     for (let i = 0; i < coins.length; i++) {
-        //         coins[i].update();
-        //         if (coins[i].collectedBy(carObj)) {
-        //             score += coinValue;
-        //             coins.splice(i, 1);
-        //             let left = Math.floor(Math.random() * 470);
-        //             let top = Math.floor(Math.random() * 300)
-        //             coins.push(new Coin(gameBoard.context, left, top));
-        //         }
-        //     }
-        //     updateScoreBoard();
-        // }
-
-
-        // function moveSelection(event) {
-        //     console.log(event.key);
-        //     switch (event.keyCode) {
-        //         case 17:
-        //             gameSpeed = 10;
-        //             gameBoard.stop();
-        //             gameBoard.start();
-        //             break;
-        //         case 37:
-        //             moveLeft();
-        //             break;
-
-        //         case 39:
-        //             moveRight();
-        //             break;
-        //     }
-        // }
-
-
-        // gameBoard.start();
-
-    </script>
+    gameBoard.start();
+</script>
 
 
 </body>
-
 </html>
