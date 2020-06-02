@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draft</title>
+</head>
+<body>
+<button id="btn" >CLICK</button>
+<!--<canvas id="myCanvas" width="500" height="600" style="border: 2px solid red"></canvas>-->
+
+
+<script>
+
+    let canvas = document.getElementById('myCanvas');
+    let context = canvas.getContext('2d');
+    let background1 = new Image();
+    canvas.addEventListener('mousedown', mouseClicked)
+    background1.src = 'image/road.png';
+    context.drawImage(background1, 0, 0, 500, 600);
+
+    function mouseClicked(event) {
+        cx = event.pageX;
+        cy = event.pageY;
+        console.log(cx + ',' + cy);
+
+    }cy
+</script>
+</body>
+</html>

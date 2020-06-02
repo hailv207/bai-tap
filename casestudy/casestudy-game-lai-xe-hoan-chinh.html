@@ -2,9 +2,386 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Car driving game</title>
 </head>
 <body>
+<div align="center">
+    <canvas id="myCanvas" width="500px" height="600px" style="border: 2px solid red">
+    </canvas>
+</div>
+
+<script>
+    window.addEventListener('keydown', moveSelection);
+    let interval;
+    let gameSpeed = 5;
+    let lastGameSpeed = 5;
+    let maxObstaclesLine = 3;
+    let maxObstaclesPerLine = 1;
+    let minObstacleWidth = 50;
+    let maxObstacleWidth = 60;
+    let minObstacleHeight = 100;
+    let maxObstacleHeight = 120;
+    let minObstacleGap = 400;
+    let maxObstacleGap = 500;
+    let obstaclesList = [];
+    let minDiff = -100;
+    let maxDiff = 100;
+    let obstaclesCollection = 10;
+    let coinSize = 30;
+    let maxCoins = 1;
+    let coinsList = [];
+    let coinValue = 5;
+    let score = 0;
+    let levelCounter = 0;
+    let chosenCarSource = '';
+    let gameBoard = document.getElementById('myCanvas');
+    let context = gameBoard.getContext('2d');
+    let xOffset = gameBoard.offsetLeft;
+    let yOffset = gameBoard.offsetTop;
+
+    let GameObject = function (imageSource, objectLeft, objectTop, objectWidth, objectHeight) {
+        this.image = new Image();
+        this.image.src = imageSource;
+        this.speedX = 20;
+        this.width = objectWidth;
+        this.height = objectHeight;
+        this.left = objectLeft;
+        this.top = objectTop;
+        this.update = function () {
+            context.drawImage(this.image, this.left, this.top, this.width, this.height);
+        }
+        this.crashWith = function (object) {
+            let crash = true;
+            let myLeft = this.left;
+            let myRight = this.left + this.width;
+            let myTop = this.top;
+            let myBottom = this.top + this.height;
+            let objTop = object.top;
+            let objBottom = object.top + object.height;
+            let objLeft = object.left;
+            let objRight = object.left + object.width;
+            if (myTop > objBottom || myLeft > objRight || myBottom < objTop || myRight < objLeft) {
+                crash = false;
+            }
+            return crash;
+        }
+        this.moveLeft = function () {
+            if (this.left >= this.speedX) {
+                this.left -= this.speedX;
+            }
+        }
+        this.moveRight = function () {
+            if (this.left <= 500 - this.width - this.speedX) {
+                this.left += this.speedX;
+            }
+        }
+    }
+
+    function Sound(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function () {
+            this.sound.play();
+        }
+        this.stop = function () {
+            this.sound.pause();
+        }
+        this.loopPlay = function () {
+            this.sound.loop = true;
+            this.sound.play();
+        }
+
+    }
+
+    let themeMusic = new Sound('audio/themesong.mp3');
+    let exploseSound = new Sound('audio/explosesound.mp3');
+    let coinCollectedSound = new Sound('audio/coincollectedsound.mp3');
+
+
+    function randomNumber(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+    }
+
+    let myCar = new GameObject(chosenCarSource, 225, 450, 50, 100);
+
+
+    function addNewObstaclesLine(list) {
+        let newObstaclesLine = [];
+        let obstaclesPerLine = randomNumber(1, maxObstaclesPerLine);
+        let obsTop;
+        if (list.length == 0) {
+            obsTop = -120;
+        } else {
+            obsTop = list[list.length - 1][list[list.length - 1].length - 1].top - randomNumber(minObstacleGap, maxObstacleGap);
+        }
+        for (let i = 0; i < obstaclesPerLine; i++) {
+            let obsImgSource = 'image/obs' + randomNumber(0, obstaclesCollection) + '.png';
+            let obsWidth = randomNumber(minObstacleWidth, maxObstacleWidth);
+            let obsHeight = randomNumber(minObstacleHeight, maxObstacleHeight);
+            let obsLeft;
+            let newObs;
+            let isOverlap = false;
+            do {
+                obsLeft = randomNumber(0, 500 - obsWidth);
+                newObs = new GameObject(obsImgSource, obsLeft, obsTop + randomNumber(minDiff, maxDiff), obsWidth, obsHeight);
+                for (let j = 0; j < i; j++) {
+                    if (newObs.crashWith(newObstaclesLine[j])) {
+                        isOverlap = true;
+                        break;
+                    } else {
+                        isOverlap = false;
+                    }
+                }
+            } while (isOverlap);
+            newObstaclesLine.push(newObs);
+        }
+        list.push(newObstaclesLine);
+    }
+
+
+    function createObstacles() {
+        obstaclesList = [];
+        for (let i = 0; i < maxObstaclesLine; i++) {
+            addNewObstaclesLine(obstaclesList);
+        }
+    }
+
+    let background1 = new GameObject('image/road.png', 0, 0, 500, 600);
+    let background2 = new GameObject('image/road.png', 0, -600, 500, 600);
+    background1.update();
+    background2.update();
+
+
+    function checkObstaclesLinePassed() {
+        let passed = false;
+        for (let i = 0; i < obstaclesList[0].length; i++) {
+            if (obstaclesList[0][i].top > 600) {
+                passed = true
+            } else {
+                passed = false;
+                break;
+            }
+        }
+        return passed;
+    }
+
+    function createCoins() {
+        coinsList = [];
+        for (let i = 0; i < maxCoins; i++) {
+            addNewCoin(coinsList);
+        }
+    }
+
+    function addNewCoin(list) {
+        let isOverlap = false;
+        let newCoin;
+        do {
+            let coinTop = randomNumber(-600, -coinSize);
+            let coinLeft = randomNumber(0, 500 - coinSize)
+            newCoin = new GameObject('image/coin.png', coinLeft, coinTop, coinSize, coinSize);
+            for (let i = 0; i < obstaclesList.length; i++) {
+                for (let j = 0; j < obstaclesList[i].length; j++) {
+                    if (newCoin.crashWith(obstaclesList[i][j])) {
+                        isOverlap = true;
+                    } else {
+                        isOverlap = false;
+                    }
+                }
+            }
+        } while (isOverlap);
+        list.push(newCoin);
+    }
+
+    function update() {
+        clearScreen();
+        if (levelCounter >= 20) {
+            levelCounter = 0;
+            gameSpeed += 2;
+            maxObstaclesPerLine += 1;
+        }
+        if (background1.top == 0) {
+            background2.top = -600;
+        }
+        if (background2.top == 0) {
+            background1.top = -600;
+        }
+        background1.top += 5;
+        background2.top += 5;
+        for (let i = 0; i < obstaclesList.length; i++) {
+            for (let j = 0; j < obstaclesList[i].length; j++) {
+                obstaclesList[i][j].top += gameSpeed + 2;
+            }
+        }
+        for (let i = 0; i < coinsList.length; i++) {
+            coinsList[i].top += gameSpeed;
+        }
+        if (score % 105 >= 100) {
+            gameSpeed += 2;
+            maxObstaclesPerLine += 1;
+        }
+        if (checkObstaclesLinePassed()) {
+            score += obstaclesList[0].length;
+            levelCounter += obstaclesList[0].length;
+            obstaclesList.splice(0, 1);
+            addNewObstaclesLine(obstaclesList);
+        }
+        background1.update();
+        background2.update();
+        myCar.update();
+        for (let i = 0; i < obstaclesList.length; i++) {
+            for (let j = 0; j < obstaclesList[i].length; j++) {
+                obstaclesList[i][j].update();
+                if (obstaclesList[i][j].crashWith(myCar)) {
+                    exploseSound.play();
+                    stopGame();
+                }
+            }
+        }
+        for (let i = 0; i < coinsList.length; i++) {
+            coinsList[i].update();
+            if (coinsList[i].crashWith(myCar)) {
+                coinCollectedSound.play();
+                coinsList.splice(i, 1);
+                addNewCoin(coinsList);
+                score += coinValue;
+                levelCounter += coinValue;
+            }
+            if (coinsList[i].top > 600) {
+                coinsList.splice(i, 1);
+                addNewCoin(coinsList);
+            }
+        }
+        context.fillStyle = 'lightyellow';
+        context.font = '40px Arial';
+        context.fillText('Score: ' + score, 30, 30, 300);
+    }
+
+    function startGame() {
+        gameSpeed = 5;
+        maxObstaclesPerLine = 1;
+        score = 0;
+        createObstacles();
+        createCoins();
+        myCar.left = 225;
+        interval = setInterval(update, 20);
+        themeMusic.loopPlay();
+    }
+
+    function clearScreen() {
+        context.clearRect(0, 0, 500, 600);
+    }
+
+
+    function stopGame() {
+        clearInterval(interval);
+        setTimeout(reload, 1000);
+        themeMusic.stop();
+    }
+
+    let car1 = new GameObject('image/car1.png', 175, 200, 50, 100);
+    let car2 = new GameObject('image/car2.png', 275, 200, 50, 100);
+
+    function loadStartScreen() {
+        gameBoard.addEventListener('mousedown', clickStart, false);
+        gameBoard.addEventListener('mousemove', chooseCar, false);
+        let wallpaper = new Image();
+        wallpaper.src = 'image/wallpaper.jpg';
+        context.drawImage(wallpaper, 0, 0, 500, 600);
+        context.fillStyle = 'rgba(145,249,255,0.5)';
+        context.fillRect(150, 50, 200, 300);
+        context.fillStyle = 'rgba(26,125,255,1)';
+        context.font = '28px Arial';
+        context.fillText('CHOOSE CAR', 155, 110);
+        context.fillText('TO START', 180, 140);
+        car1.update();
+        car2.update();
+    }
+
+    function chooseCar(evt) {
+        let xPos = evt.pageX;
+        let yPos = evt.pageY;
+        let choosingCar1 = false;
+        let choosingCar2 = false;
+        if (!choosingCar1 && xPos >= car1.left + xOffset && xPos <= car1.left + car1.width + xOffset && yPos >= car1.top + yOffset && yPos <= car1.top + car1.height + yOffset) {
+            context.beginPath();
+            context.lineWidth = 3;
+            context.strokeStyle = 'white';
+            context.rect(car1.left, car1.top, car1.width, car1.height);
+            context.closePath();
+            choosingCar1 = true;
+            context.stroke();
+        } else if (!choosingCar2 && xPos >= car2.left + xOffset && xPos <= car2.left + car2.width + xOffset && yPos >= car2.top + yOffset && yPos <= car2.top + car2.height + yOffset) {
+            context.beginPath();
+            context.lineWidth = 3;
+            context.strokeStyle = 'white';
+            context.rect(car2.left, car2.top, car2.width, car2.height);
+            context.closePath();
+            context.stroke();
+            choosingCar2 = true;
+        } else {
+            clearScreen();
+            loadStartScreen();
+            choosingCar1 = false;
+            choosingCar2 = false;
+        }
+    }
+
+    function reload() {
+        loadStartScreen();
+        context.fillStyle = 'rgba(255,44,44,0.3)';
+        context.fillRect(130, 380, 240, 100);
+        context.fillStyle = 'rgba(255,44,44,1)';
+        context.font = '30px Arial';
+        context.fillText('GAME OVER', 160, 420, 200);
+        context.fillText('SCORE: ' + score, 170, 470, 200);
+    }
+
+    function clickStart(evt) {
+        let xPos = evt.pageX;
+        let yPos = evt.pageY;
+        if (xPos >= car1.left + xOffset && xPos <= car1.left + car1.width + xOffset && yPos >= car1.top + yOffset && yPos <= car1.top + car1.height + yOffset) {
+            gameBoard.removeEventListener('mousedown', clickStart);
+            gameBoard.removeEventListener('mousemove', chooseCar);
+            chosenCarSource = 'image/car1.png';
+            myCar.image.src = chosenCarSource;
+            setTimeout(startGame, 300);
+        }
+        if (xPos >= car2.left + xOffset && xPos <= car2.left + car2.width + xOffset && yPos >= car2.top + yOffset && yPos <= car2.top + car2.height + yOffset) {
+            gameBoard.removeEventListener('mousedown', clickStart);
+            gameBoard.removeEventListener('mousemove', chooseCar);
+            chosenCarSource = 'image/car2.png';
+            myCar.image.src = chosenCarSource;
+            setTimeout(startGame, 300);
+        }
+
+    }
+
+    loadStartScreen();
+
+    function resetImmortal() {
+        setTimeout(function () {
+            isImmortal = false;
+            gameSpeed = lastGameSpeed;
+        }, immortalDuration)
+    }
+
+    function moveSelection(event) {
+        console.log(event.keyCode);
+        switch (event.keyCode) {
+            case 37:
+                myCar.moveLeft();
+                break;
+            case 39:
+                myCar.moveRight();
+                break;
+        }
+
+    }
+</script>
 
 </body>
 </html>
