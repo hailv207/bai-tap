@@ -14,7 +14,6 @@
     window.addEventListener('keydown', moveSelection);
     let interval;
     let gameSpeed = 5;
-    let lastGameSpeed = 5;
     let maxObstaclesLine = 3;
     let maxObstaclesPerLine = 1;
     let minObstacleWidth = 50;
@@ -264,6 +263,7 @@
         gameSpeed = 5;
         maxObstaclesPerLine = 1;
         score = 0;
+        levelCounter = 0;
         createObstacles();
         createCoins();
         myCar.left = 225;
@@ -361,13 +361,6 @@
     }
 
     loadStartScreen();
-
-    function resetImmortal() {
-        setTimeout(function () {
-            isImmortal = false;
-            gameSpeed = lastGameSpeed;
-        }, immortalDuration)
-    }
 
     function moveSelection(event) {
         console.log(event.keyCode);

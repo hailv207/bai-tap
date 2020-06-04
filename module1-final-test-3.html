@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function isFibonacci(number) {
+        let isFibo = false;
+        let f1 = 0;
+        let f2 = 1;
+        let fn = f1 + f2;
+        while (fn < number) {
+            fn = f1 + f2;
+            f1 = f2;
+            f2 = fn;
+        }
+        if (fn === number) {
+            isFibo = true;
+        }
+        return isFibo;
+    }
+    let x = parseInt(prompt('Nhap vao so nguyen lon hon 0'));
+    document.write('So ' + x + ' co phai la so thuoc day Fibonacci khong? ' + isFibonacci(x));
+
+</script>
+</body>
+</html>

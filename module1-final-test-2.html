@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr = [25, 34, 74, 58, 53, 357, 32, 46, 84, 5];
+    function tryRemoveFromArray(inputArray) {
+        let x = parseInt(prompt('Nhap vao so nguyen bat ky'));
+        for (let i = 0; i < inputArray.length; i++) {
+            if (x === inputArray[i]) {
+                inputArray.splice(i, 1);
+            }
+        }
+        document.write(inputArray);
+    }
+    tryRemoveFromArray(arr);
+
+</script>
+</body>
+</html>

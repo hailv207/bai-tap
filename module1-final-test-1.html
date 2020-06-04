@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cau 1</title>
+</head>
+<body>
+<script>
+    let arr = [67,66,86,55,90,78,94];
+    function findMax(innputArray) {
+        let max = innputArray[0];
+        for (let i = 1; i < innputArray.length; i++) {
+            if (max < innputArray[i]){
+                max = innputArray[i];
+            }
+        }
+        alert("Diem so cao nhat la: " + max);
+    }
+    findMax(arr);
+</script>
+</body>
+</html>
